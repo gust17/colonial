@@ -133,7 +133,7 @@ Route::get('edital/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
 Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
-    $asaas = new Asaas(env('ASAAS_TOKEN'), env('ASAAS_AMBIENTE'));
+    //$asaas = new Asaas(env('ASAAS_TOKEN'), env('ASAAS_AMBIENTE'));
     $compra = \App\Models\Compra::where('cargo_id', $cargo)->where('edital_id', $edital)->where('user_id', auth()->user()->id)->first();
 
     if (!$compra) {
