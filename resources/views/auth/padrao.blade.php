@@ -8,11 +8,11 @@
 
     <title>VerticalizeJa | Login</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="{{asset(url('css/bootstrap.min.css'))}}" rel="stylesheet">
+    <link href="{{asset(url('font-awesome/css/font-awesome.css'))}}" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset(url('css/animate.css'))}}" rel="stylesheet">
+    <link href="{{asset(url('css/style.css'))}}" rel="stylesheet">
 
 </head>
 
@@ -24,8 +24,8 @@
 </div>
 
 <!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="{{asset('js/jquery-2.1.1.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 </body>
 
