@@ -30,4 +30,16 @@ class Compra extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getStatusFormatedAttribute()
+    {
+        switch ($this->attributes['status']) {
+            case 0:
+                return 'Pendente de Pagamento';
+            case 1:
+                return 'Pagamento Liberado';
+            default:
+                return 'Status Desconhecido';
+        }
+    }
 }

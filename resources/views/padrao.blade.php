@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{env('APP_NAME')}} | Dashboard v.4</title>
-
+    <title>{{env('APP_NAME')}} </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('css/animate.css')}}" rel="stylesheet">
@@ -26,60 +26,35 @@
                             class="navbar-toggle collapsed" type="button">
                         <i class="fa fa-reorder"></i>
                     </button>
-                    <a href="#" class="navbar-brand">{{env('APP_NAME')}}</a>
+                    <a href="{{url('/')}}" class="navbar-brand">{{env('APP_NAME')}}</a>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a aria-expanded="false" role="button" href="layouts.html"> Back to main Layout page</a>
+                            <a aria-expanded="false" role="button" href="{{url('/')}}"> Inicio</a>
                         </li>
-                        <li class="dropdown">
-                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle"
-                               data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                            <ul role="menu" class="dropdown-menu">
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                            </ul>
+                        <li>
+                            <a aria-expanded="false" role="button" href="{{url('minhascompras')}}">Minhas Compras</a>
                         </li>
-                        <li class="dropdown">
-                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle"
-                               data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                            <ul role="menu" class="dropdown-menu">
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                            </ul>
+                        <li>
+                            <a aria-expanded="false" role="button" href="{{url('meusdados')}}"> Meus Dados</a>
                         </li>
-                        <li class="dropdown">
-                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle"
-                               data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                            <ul role="menu" class="dropdown-menu">
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle"
-                               data-toggle="dropdown"> Menu item <span class="caret"></span></a>
-                            <ul role="menu" class="dropdown-menu">
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                                <li><a href="">Menu item</a></li>
-                            </ul>
-                        </li>
+
 
                     </ul>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out"></i> Log out
+
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out"></i> Sair
                             </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
                         </li>
                     </ul>
                 </div>
@@ -87,14 +62,26 @@
         </div>
         <div class="wrapper wrapper-content">
 
-        @yield('content')
+            <div class="row  border-bottom white-bg dashboard-header">
+
+                <div class="col-sm-3">
+                    <h2>Bem Vindo {{auth()->user()->name}}</h2>
+
+
+                </div>
+
+
+            </div>
+
+
+            @yield('content')
         </div>
         <div class="footer">
             <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
+
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2024
+                <strong>Copyright</strong> CodeGus &copy; 2024
             </div>
         </div>
 

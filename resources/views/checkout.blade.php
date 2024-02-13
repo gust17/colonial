@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-5">
 
-
+                        <img class="img img-responsive" src="{{asset('concurso/'.$compra->edital->img)}}" alt="">
                     </div>
                     <div class="col-md-7">
 
@@ -24,7 +24,7 @@
                         <h4>Descrição do Produto</h4>
 
                         <div class="small text-muted">
-                          <h4>Você encontrará o conteúdo programatico das seguintes Matérias</h4>
+                            <h4>Você encontrará o conteúdo programatico das seguintes Matérias</h4>
 
                             @forelse($conteudos as $conteudo)
                                 <p>{{$conteudo->name}}</p>
@@ -40,23 +40,21 @@
                         <div>
                             <h3>Método de Pagamento</h3>
                             <div class="btn-group">
-                                <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> PIX</button>
+                                <a target="_blank" href="{{url('checkout/'.$compra->id."/metodo/3")}}"
+                                   class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> PIX</a>
+                                <a target="_blank" href="{{url('checkout/'.$compra->id."/metodo/2")}}"
+                                   class="btn btn-warning btn-sm"><i class="fa fa-cart-plus"></i> CREDITO|DEBITO</a>
+
 
                             </div>
                         </div>
-
 
 
                     </div>
                 </div>
 
             </div>
-            <div class="ibox-footer">
-                            <span class="pull-right">
-                                Full stock - <i class="fa fa-clock-o"></i> 14.04.2016 10:04 pm
-                            </span>
-                The generated Lorem Ipsum is therefore always free
-            </div>
+
         </div>
 
     </div>

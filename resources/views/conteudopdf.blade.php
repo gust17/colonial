@@ -1,16 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"></script>
-    <title>Document</title>
+
+    <title>Conteúdo liberado usuario: {{auth()->user()->name}}</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -19,7 +11,7 @@
         }
 
         td, th {
-            border: 1px solid #dddddd;
+            border: 1px solid #000000;
             text-align: left;
             padding: 8px;
         }
@@ -27,6 +19,7 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+
         /* Estilos para o rodapé */
         .footer {
             position: fixed;
@@ -44,6 +37,10 @@
             padding-bottom: 60px; /* Altura do rodapé + margem para espaçamento */
         }
 
+        .page-break {
+            page-break-after: always;
+        }
+
         /* Marca d'água */
         @page {
             background-color: transparent; /* Define a cor de fundo da página como transparente */
@@ -52,16 +49,12 @@
         body::after {
             content: "Não ceder"; /* Define o texto da marca d'água */
             position: fixed; /* Define a posição fixa para o texto */
-            bottom: 0;
-            top: 150px;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            font-size: 5em; /* Tamanho da fonte */
-            color: rgba(0,0,0,0.1); /* Cor do texto - ajuste a opacidade conforme necessário */
-            z-index: -1; /* Define o texto atrás do conteúdo */
-            transform: rotate(-45deg); /* Rotaciona o texto em 45 graus */
-            transform-origin: center center; /* Define o ponto de origem da rotação */
+            top: 40%; /* Centraliza verticalmente */
+            left: 20%; /* Centraliza horizontalmente */
+            transform: translate(-40%, -40%) rotate(-45deg); /* Centraliza e rotaciona o texto */
+            font-size: 10em; /* Tamanho da fonte */
+            color: rgba(0, 0, 0, 0.1); /* Cor do texto - ajuste a opacidade conforme necessário */
+            z-index: 9999; /* Define o texto sobre o conteúdo */
         }
     </style>
 </head>
@@ -78,7 +71,7 @@
                 <th>Questões</th>
                 <th>Acertos</th>
                 <th>Erros</th>
-                <th>%</th>
+
             </tr>
             @forelse($nomeEdital->conteudos->where('materia_id',$dado['materia_id'])->where('cargo_id',$nomeCargo->id) as $conteudo)
 
@@ -89,19 +82,21 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+
                 </tr>
 
             @empty
             @endforelse
+
         </table>
     @empty
     @endforelse
-</div>
 
-<!-- Rodapé -->
-<div class="footer">
-    <p>Mensagem no rodapé do PDF - Código: {{$randomCode}}</p>
 </div>
+<div class="footer">
+    <p>Não compartilhe - Código: {{$randomCode}}</p>
+</div>
+<!-- Rodapé -->
+
 </body>
 </html>

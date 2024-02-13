@@ -7,10 +7,8 @@
 
         </div>
         <h3>Realize seu Cadastro</h3>
-        <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-            <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
-        </p>
-        <p>Registro To see it in action.</p>
+        <p>Junte-se ao VerticalizeJa e comece a organizar sua preparação para concursos! Cadastre-se agora e tenha
+            acesso ao edital verticalizado de forma simplificada e eficaz.</p>
         <form class="m-t" method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -98,7 +96,7 @@
 
 
             <button type="submit" class="btn btn-primary btn-block">
-               Cadastrar
+                Cadastrar
             </button>
 
         </form>

@@ -18,4 +18,10 @@ class Edital extends Model
     {
         return $this->hasMany(Conteudo::class);
     }
+    public function cargos()
+    {
+        return $this->belongsToMany(Cargo::class);
+    }
+
+
 }
