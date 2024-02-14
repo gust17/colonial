@@ -27,7 +27,7 @@
 
 
                                             <div class="small m-t-xs">
-                                                Many desktop publishing packages and web page editors now.
+{{--                                                Many desktop publishing packages and web page editors now.--}}
                                             </div>
                                             <div class="m-t text-righ">
 
