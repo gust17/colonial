@@ -323,4 +323,8 @@ Route::get('minhascompras', function () {
 Route::get('meusdados',function (){
     return view('meusdados');
 })->middleware(['auth','verified']);
+
+Route::get('site',function (){
+    return view('site.index');
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
