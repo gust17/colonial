@@ -10,14 +10,23 @@
     <title>VerticalizeJa</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Animation CSS -->
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{asset('css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
+    <style>
+        .landing-page .header-back.one {
+            background: url('{{url('sitebase/header_one.jpg')}}') 50% 0 no-repeat;
+        }
+        .landing-page .header-back.two {
+            background: url('../img/landing/header_two.jpg') 50% 0 no-repeat;
+        }
+    </style>
 </head>
 <body id="page-top" class="landing-page">
 <div class="navbar-wrapper">
@@ -69,7 +78,9 @@
                 </div>
             </div>
             <!-- Set background for slide in css -->
-            <div class="header-back one"></div>
+            <div class="header-back one">
+
+            </div>
 
         </div>
         <div class="item">
@@ -173,53 +184,25 @@
         <div class="row m-b-lg">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>App Pricing</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+                <h1>Nosso Preço</h1>
+{{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled">
-                    <li class="pricing-title">
-                        Basic
-                    </li>
-                    <li class="pricing-desc">
-                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                    </li>
-                    <li class="pricing-price">
-                        <span>$16</span> / month
-                    </li>
-                    <li>
-                        Dashboards
-                    </li>
-                    <li>
-                        Projects view
-                    </li>
-                    <li>
-                        Contacts
-                    </li>
-                    <li>
-                        Calendar
-                    </li>
-                    <li>
-                        AngularJs
-                    </li>
-                    <li>
-                        <a class="btn btn-primary btn-xs" href="#">Signup</a>
-                    </li>
-                </ul>
+
             </div>
 
             <div class="col-lg-4 wow zoomIn">
                 <ul class="pricing-plan list-unstyled selected">
                     <li class="pricing-title">
-                        Standard
+                        Edital Verticalizado
                     </li>
                     <li class="pricing-desc">
-                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
+{{--                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.--}}
                     </li>
                     <li class="pricing-price">
-                        <span>$22</span> / month
+                        <span>R$ 10.00</span> /edital/eixo
                     </li>
                     <li>
                         Dashboards
@@ -240,41 +223,13 @@
                         <strong>Support platform</strong>
                     </li>
                     <li class="plan-action">
-                        <a class="btn btn-primary btn-xs" href="#">Signup</a>
+                        <a class="btn btn-primary btn-xs" href="{{route('register')}}">Cadastre-se</a>
                     </li>
                 </ul>
             </div>
 
             <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled">
-                    <li class="pricing-title">
-                        Premium
-                    </li>
-                    <li class="pricing-desc">
-                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                    </li>
-                    <li class="pricing-price">
-                        <span>$160</span> / month
-                    </li>
-                    <li>
-                        Dashboards
-                    </li>
-                    <li>
-                        Projects view
-                    </li>
-                    <li>
-                        Contacts
-                    </li>
-                    <li>
-                        Calendar
-                    </li>
-                    <li>
-                        AngularJs
-                    </li>
-                    <li>
-                        <a class="btn btn-primary btn-xs" href="#">Signup</a>
-                    </li>
-                </ul>
+
             </div>
         </div>
         <div class="row m-t-lg">
@@ -291,7 +246,7 @@
         <div class="row m-b-lg">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>Contact Us</h1>
+                <h1>Contate-nos</h1>
                 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
             </div>
         </div>
@@ -335,15 +290,15 @@
 </section>
 
 <!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{asset('js/jquery-2.1.1.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+<script src="{{asset('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
 <!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
-<script src="js/plugins/wow/wow.min.js"></script>
+<script src="{{asset('js/inspinia.js')}}"></script>
+<script src="{{asset('js/plugins/pace/pace.min.js')}}"></script>
+<script src="{{asset('js/plugins/wow/wow.min.js')}}"></script>
 
 
 <script>
@@ -400,6 +355,7 @@
     new WOW().init();
 
 </script>
+<script src="//code.jivosite.com/widget/7IlpzCWHxS" async></script>
 
 </body>
 </html>
