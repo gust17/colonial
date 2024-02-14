@@ -59,7 +59,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary btn-block">
+            <button type="submit" class="btn btn-success btn-block">
                 {{ __('Login') }}
             </button>
 
