@@ -59,7 +59,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-success btn-block">
+            <button type="submit" class="btn btn-primary btn-block">
                 {{ __('Login') }}
             </button>
 
@@ -69,7 +69,7 @@
                 </a>
             @endif
             <p class="text-muted text-center"><small>Ainda não tem conta?</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="{{route('register')}}">Crie agora!!</a>
+            <a class="btn btn-sm btn-success btn-block" href="{{route('register')}}">Cadastre-se</a>
 
 
         </form>
