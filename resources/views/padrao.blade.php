@@ -65,7 +65,7 @@
             <div class="row  border-bottom white-bg dashboard-header">
 
                 <div class="col-sm-3">
-                    <h2>Bem Vindo {{auth()->user()->name}}</h2>
+                    <h2>Bem-vindo, {{auth()->user()->name}}</h2>
 
 
                 </div>
