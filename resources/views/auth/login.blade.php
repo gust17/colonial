@@ -6,7 +6,7 @@
             <h1 class="logo-name">VJa+</h1>
 
         </div>
-        <h3>Bem Bindo ao VerticalizeJa</h3>
+        <h3>Bem-vindo ao VerticalizeJa</h3>
         <p>Organizando sua preparação! Faça login e tenha acesso ao seu edital verticalizado para uma preparação
             eficiente.
             <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
