@@ -209,6 +209,8 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
         );
 
         //dd($compra);
+    }else{
+        return redirect(url('minhascompras'));
     }
 
 
