@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Compra;
 use App\Services\WhatsappService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class WebhookController extends Controller
@@ -37,6 +38,8 @@ class WebhookController extends Controller
                                 return response()->json(['message' => 'sem retorno'], 200);
                             }
                             $fatura->update(['status' => 1]);
+                            $hoje = Carbon::now();
+                            $fatura->update(['data_pagamento' => $hoje]);
                             $user = $fatura->user;
 
 
