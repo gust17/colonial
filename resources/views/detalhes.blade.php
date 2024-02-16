@@ -8,16 +8,16 @@
                 <div class="row">
                     <div class="col-md-5">
 
-                        <img class="img img-responsive" src="{{asset('concurso/'.$compra->edital->img)}}" alt="">
+                        <img class="img img-responsive" src="{{asset('concurso/'.$editalBusca->img)}}" alt="">
                     </div>
                     <div class="col-md-7">
 
                         <h2 class="font-bold m-b-xs">
-                            {{$compra->cargo->name}}
+                            {{$cargoBusca->name}}
                         </h2>
-                        <small> {{$compra->edital->orgao->name}}</small>
+                        <small> {{$editalBusca->orgao->name}}</small>
                         <div class="m-t-md">
-                            <h2 class="product-main-price">R$ {{ number_format($compra->valor, 2, ',', '.') }} <small class="text-muted"></small></h2>
+                            <h2 class="product-main-price">R$ {{ number_format($editalBusca->valor, 2, ',', '.') }} <small class="text-muted"></small></h2>
                         </div>
                         <hr>
 
@@ -38,12 +38,11 @@
                         <hr>
 
                         <div>
-                            <h3>Método de Pagamento</h3>
+
                             <div class="btn-group">
-                                <a target="_blank" href="{{url('checkout/'.$compra->id."/metodo/3")}}"
-                                   class="btn btn-primary btn-lg"><i class="fa fa-cart-plus"></i> PIX</a>
-                                <a target="_blank" href="{{url('checkout/'.$compra->id."/metodo/2")}}"
-                                   class="btn btn-warning btn-lg"><i class="fa fa-cart-plus"></i> CREDITO|DEBITO</a>
+                                <a target="_blank" href="{{url('comprar/'.$editalBusca->id.'/cargo/'.$cargoBusca->id)}}"
+                                   class="btn btn-primary btn-block"><i class="fa fa-cart-plus"></i> COMPRAR</a>
+
 
 
                             </div>

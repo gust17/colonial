@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return redirect(url('/'));
+        $comprasAtivas = auth()->user()->compras->where('status', 1);
+        $editals = \App\Models\Edital::with(['cargos' => function ($query) {
+            $query->orderBy('name');
+
+            //dd($compraAtivas);
+        }])->where('ativo', 1)->get();
+        return view('index', compact('editals', 'comprasAtivas'));
     }
 }

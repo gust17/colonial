@@ -62,6 +62,7 @@ Route::get('/', function () {
     }])->where('ativo', 1)->get();
     return view('site.index', compact('editals'));
 });
+
 use Smalot\PdfParser\Parser;
 
 Route::get('teste', function () {
@@ -112,18 +113,13 @@ Route::get('teste', function () {
 Route::post('gravaConteudo', function (\Illuminate\Http\Request $request) {
     $texto = $request->conteudo;
 
-    //preg_match_all("/(?:\d+\.\s*)?[^.()]+(?:\([^)]+\))?|(?:n\. \d+\/\d+)/s", $texto, $matches);
-    //preg_match_all("/(?:\d+\.\d+|n\. \d+\/\d+|[^.()]+)/s", $texto, $matches);
+
     preg_match_all("/(?:\d+\.\d+|n\. \d+\/\d+|[^.()]+(?:\([^)]+\))?)\s*/s", $texto, $matches);
-    //preg_match_all("/(?:\d+\.\d+|n\. \d+\/\d+|\d+(?:\/\d+)?|[^.()]+(?:\([^)]+\))?)\s*/s", $texto, $matches);
 
 
-    //preg_match_all("/(?:\d+\.\d+|n\. \d+\/\d+|\d+(?:\.\d+)?(?:\/\d+)?|[^.()]+(?:\([^)]+\))?)\s*/s", $texto, $matches);
-
-
-//dd($matches[0]);
     return view('conteudo', compact('matches'));
 });
+
 
 Route::post('finalizaEdital', function (\Illuminate\Http\Request $request) {
     $conteudos = array_filter($request->conteudo, function ($value) {
@@ -137,9 +133,9 @@ Route::post('finalizaEdital', function (\Illuminate\Http\Request $request) {
         //$buscaconteudo->delete();
         $gravar = [
 
-            'edital_id' => 2,
-            'cargo_id' => 9,
-            'materia_id' => 35,
+            'edital_id' => 3,
+            'cargo_id' => 17,
+            'materia_id' => 48,
             'conteudo' => $conteudo
         ];
         \App\Models\Conteudo::create($gravar);
@@ -181,9 +177,7 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
     $asaas = new Asaas(env('ASAAS_TOKEN'), env('ASAAS_AMBIENTE'));
 
 
-    if ($user->asaas_client) {
-
-    } else {
+    if (!$user->asaas_client) {
         $dadosCliente = [
             'name' => $user->name,
             'cpfCnpj' => $user->cpf,
@@ -198,26 +192,40 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
         $user->save();
     }
 
+
+    $buscaEdital = \App\Models\Edital::find($edital);
+
+
     $compra = \App\Models\Compra::where('cargo_id', $cargo)->where('edital_id', $edital)->where('user_id', auth()->user()->id)->first();
 
     if (!$compra) {
         $compra = \App\Models\Compra::create(
-            ['edital_id' => $edital,
+            [
+                'edital_id' => $edital,
                 'cargo_id' => $cargo,
-                'user_id' => auth()->user()->id]
+                'user_id' => auth()->user()->id,
+                'valor' => $buscaEdital->valor
+            ]
         );
+
+        //dd($compra);
     }
 
+
+
     $orgaoCobra = $compra->edital->orgao->name;
-    //dd($compra);
+
     $cargoCobra = $compra->cargo->name;
+    $compra = \App\Models\Compra::find($compra->id);
     if (!$compra->asaas_id) {
+
+
         $dadosCobranca = array(
             'customer' => $user->asaas_client,
             'name' => 'Pagamento Referente a verticalização do Edital',
             'description' => "Edital do $orgaoCobra $cargoCobra",
             'dueDate' => \Carbon\Carbon::now()->addDays(2)->format('Y-m-d'),
-            'value' => 10.00,
+            'value' => $compra->valor,
 
             'billingType' => 'UNDEFINED', //required
 
@@ -229,14 +237,15 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
 
         );
+
+
         $cobranca = $asaas->Cobranca()->create($dadosCobranca);
         //dd($cobranca);
-        $compra->fill(['asaas_id' => $cobranca->id]);
-        $compra->save();
-    }
-    //dd($compra);
+        $compra->update(['asaas_id' => $cobranca->id]);
 
-    //dd($compra);
+    }
+
+
     $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
         ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
         ->where('conteudos.edital_id', $edital)
@@ -246,6 +255,25 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
 
     return view('checkout', compact('compra', 'conteudos'));
+
+})->middleware(['auth', 'verified']);
+Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
+
+
+
+    $cargoBusca = \App\Models\Cargo::find($cargo);
+    $editalBusca = \App\Models\Edital::find($edital);
+    $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
+        ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
+        ->where('conteudos.edital_id', $edital)
+        ->where('conteudos.cargo_id', $cargo)
+        ->groupBy('conteudos.materia_id')
+        ->get();
+
+
+
+
+    return view('detalhes', compact('cargoBusca','editalBusca', 'conteudos'));
 
 })->middleware(['auth', 'verified']);
 //Route::get('pdf/edital/{edital}/cargo/{cargo}', function ($edital, $cargo) {
@@ -282,20 +310,35 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //
 //})->middleware(['auth','verified']);
 
-//Route::get('duplica', function () {
-//    $conteudos = \App\Models\Conteudo::where('edital_id', 2)->where("cargo_id", 4)->where('materia_id', 8)->get();
-//    foreach ($conteudos as $conteudo) {
-//        $gravar = [
-//
-//            'edital_id' => 2,
-//            'cargo_id' => 9,
-//            'materia_id' => 8,
-//            'conteudo' => $conteudo->conteudo
-//        ];
-//        \App\Models\Conteudo::create($gravar);
-//
-//    }
-//});
+Route::get('duplica', function () {
+    $materias = \App\Models\Materia::whereIn('id', [4, 36, 37])->get();
+    $cargos = \App\Models\Cargo::whereIn('id', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21])->get();
+    //dd($cargos);
+    foreach ($materias as $materia) {
+        $conteudos = \App\Models\Conteudo::where('edital_id', 3)->where("cargo_id", 10)->where('materia_id', $materia->id)->get();
+
+        foreach ($conteudos as $conteudo) {
+            foreach ($cargos as $cargo) {
+                $gravar = [
+
+                    'edital_id' => 3,
+                    'cargo_id' => $cargo->id,
+                    'materia_id' => $materia->id,
+                    'conteudo' => $conteudo->conteudo
+                ];
+                \App\Models\Conteudo::create($gravar);
+
+            }
+
+            //
+
+        }
+
+
+    }
+
+
+});
 Route::get('checkout/{id}/metodo/{metodo}', function ($id, $motodo, \App\Service\AsaasService $asaasService) {
     $compra = \App\Models\Compra::find($id);
     $opcao = $asaasService->opcao($motodo);
@@ -365,7 +408,6 @@ Route::get('minhascompras', function () {
 Route::get('meusdados', function () {
     return view('meusdados');
 })->middleware(['auth', 'verified']);
-
 
 
 Route::get('testeM', function () {

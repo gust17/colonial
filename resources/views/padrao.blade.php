@@ -26,12 +26,12 @@
                             class="navbar-toggle collapsed" type="button">
                         <i class="fa fa-reorder"></i>
                     </button>
-                    <a href="{{url('/')}}" class="navbar-brand">{{env('APP_NAME')}}</a>
+                    <a href="{{url('/home')}}" class="navbar-brand">{{env('APP_NAME')}}</a>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a aria-expanded="false" role="button" href="{{url('/')}}"> Inicio</a>
+                            <a aria-expanded="false" role="button" href="{{url('/home')}}"> Inicio</a>
                         </li>
                         <li>
                             <a aria-expanded="false" role="button" href="{{url('minhascompras')}}">Minhas Compras</a>

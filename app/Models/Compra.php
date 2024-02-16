@@ -16,7 +16,8 @@ class Compra extends Model
         'asaas_id',
         'status',
         'data_pagamento',
-        'contador'
+        'contador',
+        'valor'
     ];
 
     public function cargo()

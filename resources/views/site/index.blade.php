@@ -135,7 +135,7 @@
         <div class="row m-b-lg">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>Nosso Editais</h1>
+                <h1>Nossos Editais</h1>
                 {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
             </div>
         </div>
