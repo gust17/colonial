@@ -12,7 +12,7 @@ class WebhookController extends Controller
 
     public function recebe(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
         try {
             // Obtenha os dados brutos da requisição
             $data = $request->getContent();
