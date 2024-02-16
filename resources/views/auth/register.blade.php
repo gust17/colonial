@@ -28,9 +28,9 @@
             <div class="form-group">
 
 
-                <input placeholder="CPF" id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror"
+                <input data-mask="999.999.999-99" placeholder="CPF" id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror"
                        name="cpf"
-                       value="{{ old('cpf') }}" required autocomplete="cpf">
+                       value="{{ old('cpf') }}"  required autocomplete="cpf">
 
                 @error('cpf')
                 <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
             <div class="form-group">
 
 
-                <input placeholder="Whatsapp ou Telefone" id="whatsapp" type="text"
+                <input data-mask="(99)99999-9999" placeholder="Whatsapp ou Telefone" id="whatsapp" type="text"
                        class="form-control @error('whatsapp') is-invalid @enderror"
                        name="whatsapp"
                        value="{{ old('whatsapp') }}" required autocomplete="whatsapp">

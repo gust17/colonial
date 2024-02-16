@@ -66,12 +66,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $cpf = preg_replace('/[^0-9]/', '', $data['cpf']);
+        $telefone = preg_replace('/[^0-9]/', '', $data['whatsapp']);
+//        dd($cpf,$telefone);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'cpf' => $data['cpf'],
-            'whatsapp' => $data['whatsapp']
+            'cpf' => $cpf,
+            'whatsapp' => $telefone
         ]);
     }
 }

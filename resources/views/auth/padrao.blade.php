@@ -25,7 +25,9 @@
 
 <!-- Mainly scripts -->
 <script src="{{asset('js/jquery-2.1.1.js')}}"></script>
+
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
 <script src="//code.jivosite.com/widget/7IlpzCWHxS" async></script>
 
 </body>
