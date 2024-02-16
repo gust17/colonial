@@ -12,6 +12,7 @@ class WebhookController extends Controller
 
     public function recebe(Request $request)
     {
+        //dd($request->all());
         try {
             // Obtenha os dados brutos da requisição
             $data = $request->getContent();
@@ -29,16 +30,15 @@ class WebhookController extends Controller
 
                             $id = $decodedData['payment']['id'];
 
+                            //($id);
+
                             $fatura = Compra::where("asaas_id", $id)->first();
+                            //dd($fatura);
                             $fatura->update(['status' => 1]);
                             $user = $fatura->user;
-                            $link = url('baixar',$fatura->id);
+                            $link = url('baixar', $fatura->id);
                             \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\ObrigadoEmail($user, $link));
 
-
-//                            $busca = $whatsappService->alertContato($fatura->id);
-//                            $busca = $whatsappService->enviarMensagem($fatura->id);
-//                            $busca = $whatsappService->enviarCode($fatura->id);
 
 
                         } elseif ($decodedData['event'] == 'PAYMENT_CREATED') {

@@ -25,9 +25,9 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     });
     Route::get('compras/ativa/{id}', function ($id) {
         $compras = \App\Models\Compra::find($id);
-        $compras->update(['status'=>1]);
+        $compras->update(['status' => 1]);
         $user = $compras->user; // Supondo que $purchase seja a instância do modelo de compra
-        $link = url('baixar',$compras->id);
+        $link = url('baixar', $compras->id);
         //dd($link);
         // Link para a página de conta do usuário
 
@@ -172,6 +172,8 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
     $user = auth()->user();
     $asaas = new Asaas(env('ASAAS_TOKEN'), env('ASAAS_AMBIENTE'));
+
+
     if ($user->asaas_client) {
 
     } else {
@@ -363,7 +365,7 @@ Route::get('site', function () {
 
         //dd($compraAtivas);
     }])->where('ativo', 1)->get();
-    return view('site.index',compact('editals'));
+    return view('site.index', compact('editals'));
 });
 
 Route::get('testeM', function () {
