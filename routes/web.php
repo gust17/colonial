@@ -13,6 +13,34 @@ use CodePhix\Asaas\Asaas;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('admin')->middleware(['admin'])->group(function () {
+    // Rotas que requerem admin
+    Route::get('users', function () {
+        $users = \App\Models\User::all();
+        return view('adm.user.index', compact('users'));
+    });
+    Route::get('compras', function () {
+        $compras = \App\Models\Compra::all();
+        return view('adm.compras.index', compact('compras'));
+    });
+    Route::get('compras/ativa/{id}', function ($id) {
+        $compras = \App\Models\Compra::find($id);
+        $compras->update(['status'=>1]);
+        $user = $compras->user; // Supondo que $purchase seja a instância do modelo de compra
+        $link = url('baixar',$compras->id);
+        //dd($link);
+        // Link para a página de conta do usuário
+
+        \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\ObrigadoEmail($user, $link));
+
+        //return view('adm.compras.index', compact('compras'));
+    });
+    // Exemplo de rota dentro do grupo admin
+//    Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+//    Route::get('users', 'AdminController@listUsers')->name('admin.users.list');
+//    Route::get('settings', 'AdminController@settings')->name('admin.settings');
+    // Outras rotas admin...
+});
 
 Route::get('/', function () {
     $comprasAtivas = auth()->user()->compras->where('status', 1);
@@ -20,12 +48,12 @@ Route::get('/', function () {
         $query->orderBy('name');
 
         //dd($compraAtivas);
-    }])->where('ativo',1)->get();
+    }])->where('ativo', 1)->get();
 
     //dd($comprasAtivas);
 
     return view('index', compact('editals', 'comprasAtivas'));
-})->middleware(['auth','verified']);
+})->middleware(['auth', 'verified']);
 
 use Smalot\PdfParser\Parser;
 
@@ -210,7 +238,7 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
     return view('checkout', compact('compra', 'conteudos'));
 
-})->middleware(['auth','verified']);
+})->middleware(['auth', 'verified']);
 //Route::get('pdf/edital/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //    $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
 //        ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
@@ -277,8 +305,7 @@ Route::get('checkout/{id}/metodo/{metodo}', function ($id, $motodo, \App\Service
     return redirect($cobranca->invoiceUrl);
 
 
-})->middleware(['auth','verified']);
-
+})->middleware(['auth', 'verified']);
 
 
 Auth::routes(['verify' => true]);
@@ -286,45 +313,66 @@ Auth::routes(['verify' => true]);
 
 Route::get('baixar/{id}', function ($id) {
     $compra = \App\Models\Compra::find($id);
-    $edital = $compra->edital_id;
-    $cargo = $compra->cargo_id;
 
-    $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
-        ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
-        ->where('conteudos.edital_id', $edital)
-        ->where('conteudos.cargo_id', $cargo)
-        ->groupBy('conteudos.materia_id')
-        ->get();
+    if (auth()->user()->id == $compra->user_id && $compra->status == 1) {
+        $compra->update(['contador' => ($compra->contador + 1)]);
+        $edital = $compra->edital_id;
+        $cargo = $compra->cargo_id;
 
-    $dados = [];
-    $nomeEdital = \App\Models\Edital::find($edital);
-    $nomeCargo = \App\Models\Cargo::find($cargo);
-    foreach ($conteudos as $conteudo) {
-        $dados[] = ['edital' => $edital,
-            'cargo' => $cargo,
-            'materia' => $conteudo->name,
-            'materia_id' => $conteudo->materia_id,
-        ];
+        $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
+            ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
+            ->where('conteudos.edital_id', $edital)
+            ->where('conteudos.cargo_id', $cargo)
+            ->groupBy('conteudos.materia_id')
+            ->get();
+
+        $dados = [];
+        $nomeEdital = \App\Models\Edital::find($edital);
+        $nomeCargo = \App\Models\Cargo::find($cargo);
+        foreach ($conteudos as $conteudo) {
+            $dados[] = ['edital' => $edital,
+                'cargo' => $cargo,
+                'materia' => $conteudo->name,
+                'materia_id' => $conteudo->materia_id,
+            ];
 
 
+        }
+        $nome_arquivo = 'Edital Verticalizado - Acesso ' . auth()->user()->name . " " . auth()->user()->cpf;
+        $randomCode = $compra->asaas_id . ' acesso ' . auth()->user()->name . " " . auth()->user()->cpf;
+        $pdf = PDF::loadView('conteudopdf', compact('dados', 'nomeCargo', 'nomeEdital', 'randomCode'))
+            ->setPaper('a4', 'landscape');
+    } else {
+        return redirect()->route('acesso.negado');
     }
-    $nome_arquivo = 'Edital Verticalizado - Acesso ' . auth()->user()->name . " " . auth()->user()->cpf;
-    $randomCode = $compra->asaas_id . ' acesso ' . auth()->user()->name . " " . auth()->user()->cpf;
-    $pdf = PDF::loadView('conteudopdf', compact('dados', 'nomeCargo', 'nomeEdital', 'randomCode'))
-        ->setPaper('a4', 'landscape');
 
 
     return $pdf->stream($nome_arquivo);
 
-})->middleware(['auth','verified']);
+})->middleware(['auth', 'verified']);
 Route::get('minhascompras', function () {
     return view('minhascompras');
-})->middleware(['auth','verified']);
-Route::get('meusdados',function (){
+})->middleware(['auth', 'verified']);
+Route::get('meusdados', function () {
     return view('meusdados');
-})->middleware(['auth','verified']);
+})->middleware(['auth', 'verified']);
 
-Route::get('site',function (){
-    return view('site.index');
+Route::get('site', function () {
+    $editals = \App\Models\Edital::with(['cargos' => function ($query) {
+        $query->orderBy('name');
+
+        //dd($compraAtivas);
+    }])->where('ativo', 1)->get();
+    return view('site.index',compact('editals'));
 });
+
+Route::get('testeM', function () {
+    return 'agora';
+})->middleware(['auth', 'admin']);
+
+Route::get('proibido', function () {
+    return view('acesso.negado');
+})->name('acesso.negado');
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

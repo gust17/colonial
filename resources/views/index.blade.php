@@ -20,7 +20,7 @@
                                         </div>
                                         <div  class="product-desc">
                                 <span class="product-price">
-                                    R$10
+                                    R$9.70
                                 </span>
                                             <small class="text-muted">{{$edital->orgao->name}}</small>
                                             <a href="#" class="product-name"> {{$cargo->name}}</a>

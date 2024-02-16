@@ -16,16 +16,19 @@ class Compra extends Model
         'asaas_id',
         'status',
         'data_pagamento',
+        'contador'
     ];
 
     public function cargo()
     {
         return $this->belongsTo(Cargo::class);
     }
+
     public function edital()
     {
         return $this->belongsTo(Edital::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -37,7 +40,7 @@ class Compra extends Model
             case 0:
                 return 'Pendente de Pagamento';
             case 1:
-                return 'Pagamento Liberado';
+                return 'Pagamento Confirmado';
             default:
                 return 'Status Desconhecido';
         }

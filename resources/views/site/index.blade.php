@@ -23,6 +23,7 @@
         .landing-page .header-back.one {
             background: url('{{url('sitebase/header_one.jpg')}}') 50% 0 no-repeat;
         }
+
         .landing-page .header-back.two {
             background: url('../img/landing/header_two.jpg') 50% 0 no-repeat;
         }
@@ -33,7 +34,8 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -63,14 +65,12 @@
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>We craft<br/>
-                        brands, web apps,<br/>
-                        and user interfaces<br/>
-                        we are IN+ studio</h1>
-                    <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                    <h1>VERTICALIZE JÁ <br> A FERRAMENTA QUE VAI REVOLUCIONAR <br> A SUA FORMA DE ESTUDAR</h1>
+
+                    {{--                    <p>Lorem Ipsum is simply dummy text of the printing.</p>--}}
                     <p>
-                        <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
-                        <a class="caption-link" href="#" role="button">Inspinia Theme</a>
+                        <a class="btn btn-lg btn-primary" href="#" role="button">Cadastre-se</a>
+                        <a class="caption-link" href="#" role="button">Login</a>
                     </p>
                 </div>
                 <div class="carousel-image wow zoomIn">
@@ -83,17 +83,17 @@
             </div>
 
         </div>
-        <div class="item">
-            <div class="container">
-                <div class="carousel-caption blank">
-                    <h1>We create meaningful <br/> interfaces that inspire.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                </div>
-            </div>
-            <!-- Set background for slide in css -->
-            <div class="header-back two"></div>
-        </div>
+        {{--        <div class="item">--}}
+        {{--            <div class="container">--}}
+        {{--                <div class="carousel-caption blank">--}}
+        {{--                    <h1>We create meaningful <br/> interfaces that inspire.</h1>--}}
+        {{--                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>--}}
+        {{--                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--            <!-- Set background for slide in css -->--}}
+        {{--            <div class="header-back two"></div>--}}
+        {{--        </div>--}}
     </div>
     <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -109,34 +109,45 @@
 <section id="features" class="container services">
     <div class="row">
         <div class="col-sm-3">
-            <h2>Full responsive</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+            <h2>O QUE É UM EDITAL VERTICALIZADO</h2>
+            <p class="text-justify">
+                É a organização e estruturação de um edital oficial de um concurso público. É a apresentação dos
+                conteúdos programáticos de maneira vertical e simplificada, dividindo-os em tópicos e subtópicos. Esse
+                formato facilita a compreensão e o acompanhamento do candidato auxiliando na criação de um plano de
+                estudos eficiente e na identificação dos assuntos mais importantes para a prova.
+            </p>
+
         </div>
         <div class="col-sm-3">
-            <h2>LESS/SASS Files</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+            <h2>O QUE VERTICALIZEJA OFERECE AO USUÁRIO</h2>
+            <p class="text-justify">Nós organizamos e facilitamos o estudo do conteúdo programático, por meio do edital
+                verticalizado, onde o
+                usuário consegue avaliar o seu desempenho possibilitando que ele identifique a quantidade de questões
+                feitas por conteúdo, permitindo que ele anote os acertos e erros.
+            {{-- e ao fim saber o seu percentual de--}}
+            {{--                acertos. </p>--}}
+
         </div>
         <div class="col-sm-3">
-            <h2>6 Charts Library</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+            <h2>POR QUE O VERTICALIZAJA É IMPORTANTE </h2>
+            <p class="text-justify">
+                Porque sem organização, o candidato não sabe nem por onde começar os seus estudos, o que diminui seu
+                desempenho e consequentemente o seu resultado. É a ferramenta que ao mesmo tempo organiza o seu conteúdo
+                programático e dá ao candidato um norte, dá parâmetros onde ele consegue visualizar onde está, como está
+                em cada assunto, possibilitando a ele se sentir seguro naquilo que ele está acertando, e estudar mais
+                nos temas que ainda precisa melhorar.
+            </p>
+
         </div>
         <div class="col-sm-3">
-            <h2>Advanced Forms</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
+            <h2>BENEFÍCIOS DE TER O SEU VERTICALIZEJA</h2>
+            <p class="text-justify">O candidato que planeja seus estudos, que tem uma visão clara dos assuntos que
+                precisa dominar, reduz a sua ansiedade, ganha confiança e tranquilidade, sabendo que está se preparando
+                de forma eficaz para o concurso.</p>
+
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
 
 
 <section class="features">
@@ -144,36 +155,49 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>More and more extra great feautres</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
+                <h1>Vantagens de utilizar o nosso edital verticalizado</h1>
+                {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>--}}
             </div>
         </div>
         <div class="row">
             <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
+                <small>VERTICALIZEJA</small>
+                <h2>
+                    Organização e planejamento </h2>
                 <i class="fa fa-bar-chart big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
+                <p class="text-justify"> Com uma compreensão clara dos conteúdos programáticos, torna-se mais simples
+                    criar um plano de
+                    estudos eficaz e bem equilibrado.</p>
             </div>
             <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-bolt big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
+                <small>VERTICALIZEJA</small>
+                <h2>Acompanhamento do progresso </h2>
+                <i class="fa fa-calendar big-icon pull-right"></i>
+                <p class="text-justify">Nossa ferramenta oferece uma estrutura que inclui campos como "estudado",
+                    "revisado", "número de
+                    questões feitas", "acertos", "erros". Essa abordagem do edital verticalizado facilita o
+                    controle do progresso nos estudos, permitindo que o candidato acompanhe seu desempenho e identifique
+                    áreas que necessitam de mais atenção.</p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-clock-o big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
+                <small>VERTICALIZEJA</small>
+                <h2> Foco nos temas relevantes </h2>
+                <i class="fa fa-check big-icon pull-right"></i>
+
+                <p class="text-justify"> O edital verticalizado proporciona ao candidato uma identificação organizada
+                    dos tópicos mais
+                    importantes, permitindo que ele direcione seus estudos de forma estratégica.</p>
             </div>
             <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-users big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
+                <small>VERTICALIZEJA</small>
+                <h2>
+                    Revisão Eficiente </h2>
+                <i class="fa fa-book big-icon pull-right"></i>
+                <p class="text-justify"> As revisões são essenciais para consolidar o conhecimento e garantir preparação
+                    para a prova. Com o edital verticalizado, você pode identificar facilmente o que já estudou e
+                    revisou. </p>
             </div>
         </div>
     </div>
@@ -184,57 +208,71 @@
         <div class="row m-b-lg">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>Nosso Preço</h1>
-{{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
+                <h1>Nosso Editais</h1>
+                {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 wow zoomIn">
+            @forelse($editals as $edital)
 
-            </div>
+                <div class="ibox">
+                    <div class="ibox-title">{{$edital->orgao->name}} - {{$edital->ano}}</div>
+                    <div class="ibox-content">
+                        <div class="row">
 
-            <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled selected">
-                    <li class="pricing-title">
-                        Edital Verticalizado
-                    </li>
-                    <li class="pricing-desc">
-{{--                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.--}}
-                    </li>
-                    <li class="pricing-price">
-                        <span>R$ 10.00</span> /edital/eixo
-                    </li>
-                    <li>
-                        Dashboards
-                    </li>
-                    <li>
-                        Projects view
-                    </li>
-                    <li>
-                        Contacts
-                    </li>
-                    <li>
-                        Calendar
-                    </li>
-                    <li>
-                        AngularJs
-                    </li>
-                    <li>
-                        <strong>Support platform</strong>
-                    </li>
-                    <li class="plan-action">
-                        <a class="btn btn-primary btn-xs" href="{{route('register')}}">Cadastre-se</a>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="col-lg-4 wow zoomIn">
+                            @forelse($edital->cargos as $cargo)
+                                <div class="col-md-3">
+                                    <div class="ibox">
+                                        <div style="height: 500px" class="ibox-content product-box">
 
-            </div>
+                                            <div
+                                                style="background-image: url('{{ asset('concurso/' . $edital->img) }}'); background-size: cover; background-position: center center; width: 100%; height: 300px;"
+                                                class="product-imitation">
+                                            </div>
+                                            <div class="product-desc">
+                                <span class="product-price">
+                                    R$9.70
+                                </span>
+                                                <small class="text-muted">{{$edital->orgao->name}}</small>
+                                                <a href="#" class="product-name"> {{$cargo->name}}</a>
+
+
+                                                <div class="small m-t-xs">
+                                                    {{--                                                Many desktop publishing packages and web page editors now.--}}
+                                                </div>
+                                                <div class="m-t text-righ">
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-footer product-box">
+
+
+                                            <a href="{{ url('comprar/'.$edital->id.'/cargo/'.$cargo->id) }}"
+                                               class="btn btn-block btn-outline btn-primary">
+                                                Comprar <i class="fa fa-long-arrow-right"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                            @endforelse
+
+
+                        </div>
+
+                    </div>
+                </div>
+            @empty
+            @endforelse
+
         </div>
         <div class="row m-t-lg">
             <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg">
-                <p>*Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. <span class="navy">Various versions</span>  have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                <p>*Não entregamos videoaula, resumos, PDF,s ou qualquer outro conteúdo de estudo.</p>
             </div>
         </div>
     </div>
@@ -261,7 +299,9 @@
             </div>
             <div class="col-lg-4">
                 <p class="text-color">
-                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis, totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis, totam corporis ea,
+                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis,
+                    totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis,
+                    totam corporis ea,
                 </p>
             </div>
         </div>
@@ -283,7 +323,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong>&copy; 2015 Company Name</strong><br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                <p><strong>&copy; 2024 VerticalizeJa</strong><br/></p>
             </div>
         </div>
     </div>
@@ -311,7 +351,7 @@
         });
 
         // Page scrolling feature
-        $('a.page-scroll').bind('click', function(event) {
+        $('a.page-scroll').bind('click', function (event) {
             var link = $(this);
             $('html, body').stop().animate({
                 scrollTop: $(link.attr('href')).offset().top - 50
@@ -321,32 +361,35 @@
         });
     });
 
-    var cbpAnimatedHeader = (function() {
+    var cbpAnimatedHeader = (function () {
         var docElem = document.documentElement,
-            header = document.querySelector( '.navbar-default' ),
+            header = document.querySelector('.navbar-default'),
             didScroll = false,
             changeHeaderOn = 200;
+
         function init() {
-            window.addEventListener( 'scroll', function( event ) {
-                if( !didScroll ) {
+            window.addEventListener('scroll', function (event) {
+                if (!didScroll) {
                     didScroll = true;
-                    setTimeout( scrollPage, 250 );
+                    setTimeout(scrollPage, 250);
                 }
-            }, false );
+            }, false);
         }
+
         function scrollPage() {
             var sy = scrollY();
-            if ( sy >= changeHeaderOn ) {
+            if (sy >= changeHeaderOn) {
                 $(header).addClass('navbar-scroll')
-            }
-            else {
+            } else {
                 $(header).removeClass('navbar-scroll')
             }
             didScroll = false;
         }
+
         function scrollY() {
             return window.pageYOffset || docElem.scrollTop;
         }
+
         init();
 
     })();

@@ -100,7 +100,11 @@
 <script src="{{asset('js/plugins/pace/pace.min.js')}}"></script>
 
 
-<script src="//code.jivosite.com/widget/7IlpzCWHxS" async></script>
+@if(auth()->user()->is_admin !=1)
+
+    <script src="//code.jivosite.com/widget/7IlpzCWHxS" async></script>
+
+@endif
 
 
 </body>
