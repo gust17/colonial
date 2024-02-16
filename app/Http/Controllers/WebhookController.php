@@ -31,6 +31,9 @@ class WebhookController extends Controller
 
                             $fatura = Compra::where("asaas_id", $id)->first();
                             $fatura->update(['status' => 1]);
+                            $user = $fatura->user;
+                            $link = url('baixar',$fatura->id);
+                            \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\ObrigadoEmail($user, $link));
 
 
 //                            $busca = $whatsappService->alertContato($fatura->id);
@@ -44,6 +47,7 @@ class WebhookController extends Controller
                     }
                 }
             }
+
 
             // Qualquer valor de 'event' (ou se 'event' não está definido) retorna um status 200 OK
             return response()->json(['message' => 'Webhook received and processed'], 200);
