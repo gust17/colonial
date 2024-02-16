@@ -33,7 +33,7 @@ class WebhookController extends Controller
                             //($id);
 
                             $fatura = Compra::where("asaas_id", $id)->first();
-                            //dd($fatura);
+                            dd($fatura);
                             $fatura->update(['status' => 1]);
                             $user = $fatura->user;
 
