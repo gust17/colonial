@@ -37,7 +37,7 @@ class WebhookController extends Controller
                             $fatura->update(['status' => 1]);
                             $user = $fatura->user;
 
-                            return $fatura;
+
                             $link = url('baixar', $fatura->id);
                             \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\ObrigadoEmail($user, $link));
 
