@@ -30,80 +30,7 @@
     </style>
 </head>
 <body id="page-top" class="landing-page">
-<div class="navbar-wrapper">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">{{env('APP_NAME')}}</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="page-scroll" href="#page-top">Home</a></li>
-                    <li><a class="page-scroll" href="#features">Features</a></li>
-                    <li><a class="page-scroll" href="#team">Team</a></li>
-                    <li><a class="page-scroll" href="#testimonials">Testimonials</a></li>
-                    <li><a class="page-scroll" href="#pricing">Pricing</a></li>
-                    <li><a class="page-scroll" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
-        <li data-target="#inSlider" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>VERTICALIZE JÁ <br> A FERRAMENTA QUE VAI REVOLUCIONAR <br> A SUA FORMA DE ESTUDAR</h1>
-
-                    {{--                    <p>Lorem Ipsum is simply dummy text of the printing.</p>--}}
-                    <p>
-                        <a class="btn btn-lg btn-primary" href="#" role="button">Cadastre-se</a>
-                        <a class="caption-link" href="#" role="button">Login</a>
-                    </p>
-                </div>
-                <div class="carousel-image wow zoomIn">
-                    <img src="img/landing/laptop.png" alt="laptop"/>
-                </div>
-            </div>
-            <!-- Set background for slide in css -->
-            <div class="header-back one">
-
-            </div>
-
-        </div>
-        {{--        <div class="item">--}}
-        {{--            <div class="container">--}}
-        {{--                <div class="carousel-caption blank">--}}
-        {{--                    <h1>We create meaningful <br/> interfaces that inspire.</h1>--}}
-        {{--                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>--}}
-        {{--                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--            <!-- Set background for slide in css -->--}}
-        {{--            <div class="header-back two"></div>--}}
-        {{--        </div>--}}
-    </div>
-    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+@include('site.top')
 
 
 <section id="features" class="container services">
@@ -285,40 +212,39 @@
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
                 <h1>Contate-nos</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+                {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
             </div>
         </div>
         <div class="row m-b-lg">
             <div class="col-lg-3 col-lg-offset-3">
                 <address>
-                    <strong><span class="navy">Company name, Inc.</span></strong><br/>
-                    795 Folsom Ave, Suite 600<br/>
-                    San Francisco, CA 94107<br/>
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                    <strong><span class="navy">VerticalizeJA</span></strong><br/>
+                    {{--                    795 Folsom Ave, Suite 600<br/>--}}
+                    {{--                    San Francisco, CA 94107<br/>--}}
+                    {{--                    <abbr title="Phone">P:</abbr> (123) 456-7890--}}
                 </address>
             </div>
             <div class="col-lg-4">
                 <p class="text-color">
-                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis,
-                    totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis,
-                    totam corporis ea,
+                    Se tiver alguma dúvida entre contato conosco pelo email
+                    suporte@verticalizeja.com
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <a href="mailto:test@email.com" class="btn btn-primary">Send us mail</a>
-                <p class="m-t-sm">
-                    Or follow us on social platform
-                </p>
-                <ul class="list-inline social-icon">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                </ul>
+                <a href="mailto:suport@verticalizeja.com" class="btn btn-primary">Nosso Email</a>
+                {{--                <p class="m-t-sm">--}}
+                {{--                    Or follow us on social platform--}}
+                {{--                </p>--}}
+                {{--                <ul class="list-inline social-icon">--}}
+                {{--                    <li><a href="#"><i class="fa fa-twitter"></i></a>--}}
+                {{--                    </li>--}}
+                {{--                    <li><a href="#"><i class="fa fa-facebook"></i></a>--}}
+                {{--                    </li>--}}
+                {{--                    <li><a href="#"><i class="fa fa-linkedin"></i></a>--}}
+                {{--                    </li>--}}
+                {{--                </ul>--}}
             </div>
         </div>
         <div class="row">

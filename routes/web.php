@@ -42,7 +42,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     // Outras rotas admin...
 });
 
-Route::get('/', function () {
+Route::get('/home', function () {
     $comprasAtivas = auth()->user()->compras->where('status', 1);
     $editals = \App\Models\Edital::with(['cargos' => function ($query) {
         $query->orderBy('name');
@@ -54,7 +54,14 @@ Route::get('/', function () {
 
     return view('index', compact('editals', 'comprasAtivas'));
 })->middleware(['auth', 'verified']);
+Route::get('/', function () {
+    $editals = \App\Models\Edital::with(['cargos' => function ($query) {
+        $query->orderBy('name');
 
+        //dd($compraAtivas);
+    }])->where('ativo', 1)->get();
+    return view('site.index', compact('editals'));
+});
 use Smalot\PdfParser\Parser;
 
 Route::get('teste', function () {
@@ -359,14 +366,7 @@ Route::get('meusdados', function () {
     return view('meusdados');
 })->middleware(['auth', 'verified']);
 
-Route::get('site', function () {
-    $editals = \App\Models\Edital::with(['cargos' => function ($query) {
-        $query->orderBy('name');
 
-        //dd($compraAtivas);
-    }])->where('ativo', 1)->get();
-    return view('site.index', compact('editals'));
-});
 
 Route::get('testeM', function () {
     return 'agora';
@@ -376,5 +376,12 @@ Route::get('proibido', function () {
     return view('acesso.negado');
 })->name('acesso.negado');
 
+Route::get('privacidade', function () {
+    return view('site.privacidade');
+});
+Route::get('reembolso', function () {
+    return view('site.reembolso');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
