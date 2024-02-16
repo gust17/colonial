@@ -50,7 +50,7 @@ class WebhookController extends Controller
 
 
             // Qualquer valor de 'event' (ou se 'event' não está definido) retorna um status 200 OK
-            return response()->json(['message' => 'Webhook received and processed'], 200);
+            return response()->json(['message' => 'Webhook received and processed agora'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error processing the webhook'], 500);
         }
