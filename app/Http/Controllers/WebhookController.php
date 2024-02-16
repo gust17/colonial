@@ -12,7 +12,7 @@ class WebhookController extends Controller
 
     public function recebe(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         try {
             // Obtenha os dados brutos da requisição
             $data = $request->getContent();
@@ -36,6 +36,8 @@ class WebhookController extends Controller
                             //dd($fatura);
                             $fatura->update(['status' => 1]);
                             $user = $fatura->user;
+
+                            return $fatura;
                             $link = url('baixar', $fatura->id);
                             \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\ObrigadoEmail($user, $link));
 
