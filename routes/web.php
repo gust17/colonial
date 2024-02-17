@@ -134,8 +134,8 @@ Route::post('finalizaEdital', function (\Illuminate\Http\Request $request) {
         $gravar = [
 
             'edital_id' => 3,
-            'cargo_id' => 17,
-            'materia_id' => 48,
+            'cargo_id' => 25,
+            'materia_id' => 49,
             'conteudo' => $conteudo
         ];
         \App\Models\Conteudo::create($gravar);
@@ -314,10 +314,10 @@ Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
 Route::get('duplica', function () {
     $materias = \App\Models\Materia::whereIn('id', [4, 36, 37])->get();
-    $cargos = \App\Models\Cargo::whereIn('id', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21])->get();
+    $cargos = \App\Models\Cargo::whereIn('id', [24])->get();
     //dd($cargos);
     foreach ($materias as $materia) {
-        $conteudos = \App\Models\Conteudo::where('edital_id', 3)->where("cargo_id", 10)->where('materia_id', $materia->id)->get();
+        $conteudos = \App\Models\Conteudo::where('edital_id', 3)->where("cargo_id", 23)->where('materia_id', $materia->id)->get();
 
         foreach ($conteudos as $conteudo) {
             foreach ($cargos as $cargo) {
