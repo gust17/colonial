@@ -33,6 +33,8 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
 
         \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\ObrigadoEmail($user, $link));
 
+
+        return redirect()->back();
         //return view('adm.compras.index', compact('compras'));
     });
     // Exemplo de rota dentro do grupo admin
