@@ -18,25 +18,30 @@
             </div>
             <div class="col-lg-4">
                 <p class="text-color">
-                    Se tiver alguma dúvida entre contato conosco pelo email
-                    suporte@verticalizeja.com
+                    Se tiver alguma dúvida entre contato conosco pelo email ou whatsapp
+                    suporte@verticalizeja.com | (47)3842-3149<br>
+
+
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <a href="mailto:suport@verticalizeja.com" class="btn btn-primary">Nosso Email</a>
-                {{--                <p class="m-t-sm">--}}
-                {{--                    Or follow us on social platform--}}
-                {{--                </p>--}}
-                {{--                <ul class="list-inline social-icon">--}}
-                {{--                    <li><a href="#"><i class="fa fa-twitter"></i></a>--}}
-                {{--                    </li>--}}
-                {{--                    <li><a href="#"><i class="fa fa-facebook"></i></a>--}}
-                {{--                    </li>--}}
-                {{--                    <li><a href="#"><i class="fa fa-linkedin"></i></a>--}}
-                {{--                    </li>--}}
-                {{--                </ul>--}}
+                <a class="btn btn-primary" target="_blank"
+                   href="https://api.whatsapp.com/send?phone=554738423149&text=Olá,%20Gostaria%20de%20mais%20informações%20sobre%20o%20VerticalizeJa"><i
+                        class="fa fa-whatsapp"></i> (47) 3842-3149</a>
+                <a href="mailto:suport@verticalizeja.com" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Email</a>
+                <p class="m-t-sm">
+                    Compartilhem nossa rede social
+                </p>
+                <ul class="list-inline social-icon">
+                    <li><a target="_blank" href="https://www.instagram.com/verticalizeja/"><i class="fa fa-instagram"></i></a>
+                    </li>
+                    {{--                    <li><a href="#"><i class="fa fa-facebook"></i></a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li><a href="#"><i class="fa fa-linkedin"></i></a>--}}
+                    {{--                    </li>--}}
+                </ul>
             </div>
         </div>
         <div class="row">
