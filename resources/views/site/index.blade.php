@@ -282,6 +282,13 @@
 
 </script>
 <script src="//code.jivosite.com/widget/7IlpzCWHxS" async></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQGRZ34LGM"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-QQGRZ34LGM');
+</script>
 </body>
 </html>

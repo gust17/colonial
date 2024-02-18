@@ -37,6 +37,14 @@
         $('#cpf').mask('000.000.000-00'); // Aplica a máscara ao campo de telefone
     });
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQGRZ34LGM"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QQGRZ34LGM');
+</script>
 </body>
 
 </html>
