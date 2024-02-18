@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+Route::get('verifica/{id}', function ($id) {
+    $presente = \App\Models\Compra::find($id);
+    return ['status' => $presente->status];
+});
 
 Route::post('webhook', [\App\Http\Controllers\WebhookController::class,'recebe']);

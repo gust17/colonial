@@ -17,7 +17,8 @@
                         </h2>
                         <small> {{$compra->edital->orgao->name}}</small>
                         <div class="m-t-md">
-                            <h2 class="product-main-price">R$ {{ number_format($compra->valor, 2, ',', '.') }} <small class="text-muted"></small></h2>
+                            <h2 class="product-main-price">R$ {{ number_format($compra->valor, 2, ',', '.') }} <small
+                                    class="text-muted"></small></h2>
                         </div>
                         <hr>
 
@@ -58,4 +59,38 @@
         </div>
 
     </div>
+@endsection
+
+@section('js')
+
+    @if($compra->status ==0)
+        <script>
+
+            function verificarStatus(id) {
+                $.ajax({
+                    url: '{{url('api/verifica')}}/' + id,
+                    method: 'GET',
+                    success: function (response) {
+                        if (response.status === 1) {
+                            window.location.href = '/minhascompras';
+                        } else {
+                            $('#status').text('Aguardando...');
+                        }
+                    },
+                    error: function () {
+                        console.log('Erro ao verificar o status.');
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                var id = {{$compra->id}}; // Substitua pelo ID correto que você deseja verificar
+
+                setInterval(function () {
+                    verificarStatus(id);
+                }, 10000); // 10 segundos
+            });
+        </script>
+    @endif
+
 @endsection
