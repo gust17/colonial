@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Verticalizeja, Edital Verticalizado é a organização e estruturação de um edital oficial de um concurso público. É a apresentação dos conteúdos programáticos de maneira vertical e simplificada, dividindo-os em tópicos e subtópicos. Esse formato facilita a compreensão e o acompanhamento do candidato auxiliando na criação de um plano de estudos eficiente e na identificação dos assuntos mais importantes para a prova,">
     <meta name="author" content="">
 
     <title>VerticalizeJa</title>
