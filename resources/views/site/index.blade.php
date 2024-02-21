@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Verticalizeja, Edital Verticalizado é a organização e estruturação de um edital oficial de um concurso público. É a apresentação dos conteúdos programáticos de maneira vertical e simplificada, dividindo-os em tópicos e subtópicos. Esse formato facilita a compreensão e o acompanhamento do candidato auxiliando na criação de um plano de estudos eficiente e na identificação dos assuntos mais importantes para a prova,">
+    <meta name="description"
+          content="Verticalizeja, Edital Verticalizado é a organização e estruturação de um edital oficial de um concurso público. É a apresentação dos conteúdos programáticos de maneira vertical e simplificada, dividindo-os em tópicos e subtópicos. Esse formato facilita a compreensão e o acompanhamento do candidato auxiliando na criação de um plano de estudos eficiente e na identificação dos assuntos mais importantes para a prova,">
     <meta name="author" content="">
 
     <title>VerticalizeJa</title>
@@ -154,7 +155,7 @@
                                         <div style="height: 500px" class="ibox-content product-box">
 
                                             <div
-                                                style="background-image: url('{{ asset('concurso/' . $edital->img) }}'); background-size: cover; background-position: center center; width: 100%; height: 300px;"
+                                                style="background-image: url('{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}'); background-size: cover; background-position: center center; width: 100%; height: 300px;"
                                                 class="product-imitation">
                                             </div>
                                             <div class="product-desc">
@@ -285,7 +286,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQGRZ34LGM"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
 
     gtag('config', 'G-QQGRZ34LGM');

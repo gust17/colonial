@@ -67,9 +67,31 @@ Route::get('/', function () {
 
 use Smalot\PdfParser\Parser;
 
+Route::post('orgao/create',function (\Illuminate\Http\Request $request){
+    $orgao = \App\Models\Orgao::create($request->all());
+    return redirect()->back();
+});
+Route::post('cargo/create',function (\Illuminate\Http\Request $request){
+    $cargo = \App\Models\Cargo::create($request->all());
+    return redirect()->back();
+});
+Route::post('edital/create',function (\Illuminate\Http\Request $request){
+    $edital = \App\Models\Edital::create($request->all());
+    return redirect()->back();
+});
+Route::post('materia/create',function (\Illuminate\Http\Request $request){
+    $materia = \App\Models\Materia::create($request->all());
+    return redirect()->back();
+});
+
+
 Route::get('teste', function () {
 
-    return view('testeindex');
+    $cargos = \App\Models\Cargo::all();
+    $editals = \App\Models\Edital::all();
+    $materias = \App\Models\Materia::all();
+    $orgaos = \App\Models\Orgao::all();
+    return view('testeindex',compact('editals','cargos','materias','orgaos'));
     // Caminho completo para o arquivo PDF
     $pdfPath = public_path('edital.pdf');
 
@@ -112,14 +134,24 @@ Route::get('teste', function () {
         return 'Erro ao processar o arquivo PDF: ' . $e->getMessage();
     }
 });
-Route::post('gravaConteudo', function (\Illuminate\Http\Request $request) {
+Route::post('gravaConteudo', function (\Illuminate\Http\Request $request,\App\Service\SepararService $separarService) {
+
+
+
     $texto = $request->conteudo;
+    //dd($texto);
 
 
+    //dd($request->all());
+
+    $edital_id = $request->edital_id;
+    $cargo_id = $request->cargo_id;
+    $material_id = $request->material_id;
+   // dd($edital_id,$cargo_id,$material_id);
     preg_match_all("/(?:\d+\.\d+|n\. \d+\/\d+|[^.()]+(?:\([^)]+\))?)\s*/s", $texto, $matches);
 
 
-    return view('conteudo', compact('matches'));
+    return view('conteudo', compact('matches','edital_id','cargo_id','material_id'));
 });
 
 
@@ -127,6 +159,7 @@ Route::post('finalizaEdital', function (\Illuminate\Http\Request $request) {
     $conteudos = array_filter($request->conteudo, function ($value) {
         return !is_null($value);
     });
+    //dd($request->all());
     //dd($conteudos);
     foreach ($conteudos as $conteudo) {
 
@@ -135,14 +168,16 @@ Route::post('finalizaEdital', function (\Illuminate\Http\Request $request) {
         //$buscaconteudo->delete();
         $gravar = [
 
-            'edital_id' => 3,
-            'cargo_id' => 25,
-            'materia_id' => 49,
+            'edital_id' => $request->edital_id,
+            'cargo_id' => $request->cargo_id,
+            'materia_id' => $request->material_id,
             'conteudo' => $conteudo
         ];
+        //dd($gravar);
         \App\Models\Conteudo::create($gravar);
     }
 
+    return redirect(url('teste'));
 
     //return view('conteudofiltro', compact('conteudo'));
 
@@ -315,17 +350,17 @@ Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //})->middleware(['auth','verified']);
 
 Route::get('duplica', function () {
-    $materias = \App\Models\Materia::whereIn('id', [4, 36, 37])->get();
-    $cargos = \App\Models\Cargo::whereIn('id', [24])->get();
+    $materias = \App\Models\Materia::whereIn('id', [4, 50, 51])->get();
+    $cargos = \App\Models\Cargo::whereIn('id', [28])->get();
     //dd($cargos);
     foreach ($materias as $materia) {
-        $conteudos = \App\Models\Conteudo::where('edital_id', 3)->where("cargo_id", 23)->where('materia_id', $materia->id)->get();
+        $conteudos = \App\Models\Conteudo::where('edital_id', 4)->where("cargo_id", 26)->where('materia_id', $materia->id)->get();
 
         foreach ($conteudos as $conteudo) {
             foreach ($cargos as $cargo) {
                 $gravar = [
 
-                    'edital_id' => 3,
+                    'edital_id' => 4,
                     'cargo_id' => $cargo->id,
                     'materia_id' => $materia->id,
                     'conteudo' => $conteudo->conteudo

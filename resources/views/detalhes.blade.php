@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-5">
 
-                        <img class="img img-responsive" src="{{asset('concurso/'.$editalBusca->img)}}" alt="">
+                        <img class="img img-responsive" src="{{ $editalBusca->img ? asset('concurso/' . $editalBusca->img) : asset('logo.png') }}" alt="">
                     </div>
                     <div class="col-md-7">
 

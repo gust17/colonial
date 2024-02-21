@@ -14,22 +14,127 @@
 </head>
 <body>
 <div class="container">
-    <form action="{{url('gravaConteudo')}}" method="post">
-        @csrf
-        <div class="form-group">
+    <div class="card">
+        <div class="card-body">
+            <form action="{{url('cargo/create')}}" method="post">
+                @csrf
+                <div class="form-group">
 
-            <label for="">Materia</label>
-            <input type="text" name="materia" class="form-control">
+                    <label for="">Cargo</label>
+                    <input class="form-control" name="name">
+                </div>
+                <div class="form-group">
+                    <button>Salvar</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{url('materia/create')}}" method="post">
+                @csrf
+                <div class="form-group">
 
-            <label for="">Submeta apenas o texto do conteudo do edital</label>
-            <textarea class="form-control" name="conteudo" id="" cols="30" rows="10"></textarea>
+                    <label for="">Materia</label>
+                    <input class="form-control" name="name">
+                </div>
+                <div class="form-group">
+                    <button>Salvar</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <button class="btn btn-success">Salvar</button>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{url('orgao/create')}}" method="post">
+                @csrf
+                <div class="form-group">
+
+                    <label for="">Orgão</label>
+                    <input class="form-control" name="name">
+                </div>
+                <div class="form-group">
+                    <button>Salvar</button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{url('edital/create')}}" method="post">
+                @csrf
+                <div class="form-group">
+
+                    <label for="">Orgão</label>
+                    <select class="form-control" name="orgao_id" id="">
+                        @forelse($orgaos as $orgao)
+                            <option value="{{$orgao->id}}">{{$orgao->name}}</option>
+                        @empty
+                        @endforelse
+                    </select>
+
+                </div>
+                <div class="form-group">
+
+                    <label for="">Ano</label>
+                    <input type="number" class="form-control" name="ano" id="">
+
+                </div>
+                <div class="form-group">
+                    <button>Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{url('gravaConteudo')}}" method="post">
+                @csrf
+                <div class="form-group">
+
+                    <label for="">Edital</label>
+                    <select class="form-control" name="edital_id" id="">
+                        @forelse($editals as $edital)
+                            <option value="{{$edital->id}}">{{$edital->orgao->name}} - {{$edital->ano}}</option>
+                        @empty
+                        @endforelse
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    <label for="">Cargo</label>
+                    <select class="form-control" name="cargo_id" id="">
+                        @forelse($cargos as $cargo)
+                            <option value="{{$cargo->id}}">{{$cargo->name}}</option>
+                        @empty
+                        @endforelse
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    <label for="">Materia</label>
+                    <select class="form-control" name="material_id" id="">
+                        @forelse($materias as $materia)
+                            <option value="{{$materia->id}}">{{$materia->name}}</option>
+                        @empty
+                        @endforelse
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    <label for="">Submeta apenas o texto do conteudo do edital</label>
+                    <textarea class="form-control" name="conteudo" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 
 </body>

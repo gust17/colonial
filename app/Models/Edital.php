@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Edital extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'orgao_id',
+        'ano'
+    ];
 
     public function orgao()
     {
