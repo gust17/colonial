@@ -37,6 +37,15 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
         return redirect()->back();
         //return view('adm.compras.index', compact('compras'));
     });
+    Route::get('compras/deletar/{id}', function ($id) {
+        $compras = \App\Models\Compra::find($id);
+
+        $compras->delete();
+
+
+        return redirect()->back();
+        //return view('adm.compras.index', compact('compras'));
+    });
     // Exemplo de rota dentro do grupo admin
 //    Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 //    Route::get('users', 'AdminController@listUsers')->name('admin.users.list');
@@ -350,17 +359,17 @@ Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //})->middleware(['auth','verified']);
 
 Route::get('duplica', function () {
-    $materias = \App\Models\Materia::whereIn('id', [4, 50, 51])->get();
-    $cargos = \App\Models\Cargo::whereIn('id', [28])->get();
+    $materias = \App\Models\Materia::whereIn('id', [4, 61,62,63,64])->get();
+    $cargos = \App\Models\Cargo::whereIn('id', [33])->get();
     //dd($cargos);
     foreach ($materias as $materia) {
-        $conteudos = \App\Models\Conteudo::where('edital_id', 4)->where("cargo_id", 26)->where('materia_id', $materia->id)->get();
+        $conteudos = \App\Models\Conteudo::where('edital_id', 6)->where("cargo_id", 32)->where('materia_id', $materia->id)->get();
 
         foreach ($conteudos as $conteudo) {
             foreach ($cargos as $cargo) {
                 $gravar = [
 
-                    'edital_id' => 4,
+                    'edital_id' => 6,
                     'cargo_id' => $cargo->id,
                     'materia_id' => $materia->id,
                     'conteudo' => $conteudo->conteudo
