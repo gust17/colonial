@@ -1,6 +1,6 @@
 @extends('padrao')
 @section('content')
-    <div class="col-lg-12">
+
 
         <div class="ibox product-detail">
             <div class="ibox-content">
@@ -58,7 +58,7 @@
 
         </div>
 
-    </div>
+
 @endsection
 
 @section('js')

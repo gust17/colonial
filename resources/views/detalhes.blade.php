@@ -1,6 +1,6 @@
 @extends('padrao')
 @section('content')
-    <div class="col-lg-12">
+
 
         <div class="ibox product-detail">
             <div class="ibox-content">
@@ -8,7 +8,9 @@
                 <div class="row">
                     <div class="col-md-5">
 
-                        <img class="img img-responsive" src="{{ $editalBusca->img ? asset('concurso/' . $editalBusca->img) : asset('logo.png') }}" alt="">
+                        <img class="img img-responsive"
+                             src="{{ $editalBusca->img ? asset('concurso/' . $editalBusca->img) : asset('logo.png') }}"
+                             alt="">
                     </div>
                     <div class="col-md-7">
 
@@ -17,7 +19,8 @@
                         </h2>
                         <small> {{$editalBusca->orgao->name}}</small>
                         <div class="m-t-md">
-                            <h2 class="product-main-price">R$ {{ number_format($editalBusca->valor, 2, ',', '.') }} <small class="text-muted"></small></h2>
+                            <h2 class="product-main-price">R$ {{ number_format($editalBusca->valor, 2, ',', '.') }}
+                                <small class="text-muted"></small></h2>
                         </div>
                         <hr>
 
@@ -44,7 +47,6 @@
                                    class="btn btn-primary btn-block"><i class="fa fa-cart-plus"></i> COMPRAR</a>
 
 
-
                             </div>
                         </div>
 
@@ -56,5 +58,5 @@
 
         </div>
 
-    </div>
+
 @endsection
