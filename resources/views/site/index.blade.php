@@ -155,7 +155,7 @@
                                         <div style="height: 500px" class="ibox-content product-box">
 
                                             <div
-                                                style="background-image: url('{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}'); background-size: cover; background-position: center center; width: 100%; height: 300px;"
+                                                style="background-image: url('{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}'); background-size: cover; background-position: center center; width: 100%; height: 80px;"
                                                 class="product-imitation">
                                             </div>
                                             <div class="product-desc">
