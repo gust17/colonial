@@ -152,6 +152,10 @@ Route::post('gravaConteudo', function (\Illuminate\Http\Request $request,\App\Se
     //dd($texto);
 
 
+    $texto = $separarService->formatarTexto($texto);
+
+    //dd($texto);
+
     //dd($request->all());
 
     $edital_id = $request->edital_id;
@@ -159,6 +163,7 @@ Route::post('gravaConteudo', function (\Illuminate\Http\Request $request,\App\Se
     $material_id = $request->material_id;
    // dd($edital_id,$cargo_id,$material_id);
     preg_match_all("/(?:\d+\.\d+|n\. \d+\/\d+|[^.()]+(?:\([^)]+\))?)\s*/s", $texto, $matches);
+
 
 
     return view('conteudo', compact('matches','edital_id','cargo_id','material_id'));
@@ -325,6 +330,25 @@ Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
     return view('detalhes', compact('cargoBusca','editalBusca', 'conteudos'));
 
 })->middleware(['auth', 'verified']);
+Route::get('open/detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
+
+
+
+    $cargoBusca = \App\Models\Cargo::find($cargo);
+    $editalBusca = \App\Models\Edital::find($edital);
+    $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
+        ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
+        ->where('conteudos.edital_id', $edital)
+        ->where('conteudos.cargo_id', $cargo)
+        ->groupBy('conteudos.materia_id')
+        ->get();
+
+
+
+
+    return view('site.detalhes', compact('cargoBusca','editalBusca', 'conteudos'));
+
+});
 //Route::get('pdf/edital/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //    $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
 //        ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
@@ -360,17 +384,17 @@ Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //})->middleware(['auth','verified']);
 
 Route::get('duplica', function () {
-    $materias = \App\Models\Materia::whereIn('id', [4, 61,62,63,64])->get();
-    $cargos = \App\Models\Cargo::whereIn('id', [33])->get();
+    $materias = \App\Models\Materia::whereIn('id', [4,55])->get();
+    $cargos = \App\Models\Cargo::whereIn('id', [37])->get();
     //dd($cargos);
     foreach ($materias as $materia) {
-        $conteudos = \App\Models\Conteudo::where('edital_id', 6)->where("cargo_id", 32)->where('materia_id', $materia->id)->get();
+        $conteudos = \App\Models\Conteudo::where('edital_id', 5)->where("cargo_id", 29)->where('materia_id', $materia->id)->get();
 
         foreach ($conteudos as $conteudo) {
             foreach ($cargos as $cargo) {
                 $gravar = [
 
-                    'edital_id' => 6,
+                    'edital_id' => 5,
                     'cargo_id' => $cargo->id,
                     'materia_id' => $materia->id,
                     'conteudo' => $conteudo->conteudo

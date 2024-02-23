@@ -35,6 +35,28 @@ class SepararService
         return $topicos;
     }
 
+    function formatarTexto($texto) {
+        // Divide o texto em um array de strings usando o ponto e o ponto e vírgula como delimitadores
+        $arrayTexto = preg_split('/[.;]/', $texto);
+
+        // String para armazenar o texto formatado
+        $textoFormatado = '';
+
+        // Percorre o array e formata o texto
+        foreach ($arrayTexto as $frase) {
+            // Remove espaços em branco extras do início e do final da frase
+            $frase = trim($frase);
+
+            // Se a frase não estiver vazia, adiciona um ponto no final
+            if (!empty($frase)) {
+                $textoFormatado .= $frase . '. ';
+            }
+        }
+
+        // Retorna o texto formatado removendo o espaço extra no final
+        return rtrim($textoFormatado);
+    }
+
 
 
 
