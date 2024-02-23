@@ -68,10 +68,11 @@ Route::get('/home', function () {
 Route::get('/', function () {
     $editals = \App\Models\Edital::with(['cargos' => function ($query) {
         $query->orderBy('name');
-
-        //dd($compraAtivas);
     }])->where('ativo', 1)->get();
-    return view('site.index', compact('editals'));
+    $passados = \App\Models\Edital::with(['cargos' => function ($query) {
+        $query->orderBy('name');
+    }])->where('ativo', 0)->get();
+    return view('site.index', compact('editals','passados'));
 });
 
 use Smalot\PdfParser\Parser;

@@ -4,9 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="Verticalizeja, Edital Verticalizado é a organização e estruturação de um edital oficial de um concurso público. É a apresentação dos conteúdos programáticos de maneira vertical e simplificada, dividindo-os em tópicos e subtópicos. Esse formato facilita a compreensão e o acompanhamento do candidato auxiliando na criação de um plano de estudos eficiente e na identificação dos assuntos mais importantes para a prova,">
-    <meta name="author" content="">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{asset('icon/apple-icon-57x57.png')}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{asset('icon/apple-icon-60x60.png')}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('icon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('icon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('icon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('icon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('icon/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('icon/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('icon/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('icon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('icon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icon/favicon-16x16.png') }}">
+
+    <link rel="manifest" href="{{asset('icon/manifest.json')}}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <meta name="description" content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
 
     <title>VerticalizeJa</title>
 
@@ -140,66 +160,149 @@
                 {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
             </div>
         </div>
+
         <div class="row">
-            @forelse($editals as $edital)
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> Atuais</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#tab-2">Passados</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
 
-                <div class="ibox">
-                    <div class="ibox-title">{{$edital->orgao->name}} - {{$edital->ano}}</div>
-                    <div class="ibox-content">
-                        <div class="row">
+                                @forelse($editals as $edital)
 
-
-                            @forelse($edital->cargos as $cargo)
-                                <div class="col-md-3">
                                     <div class="ibox">
-                                        <div style="height: 500px" class="ibox-content product-box">
+                                        <div class="ibox-title">{{$edital->orgao->name}} - {{$edital->ano}}</div>
+                                        <div class="ibox-content">
+                                            <div class="row">
 
-                                            <div
-                                                style="background-image: url('{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}'); background-size: cover; background-position: center center; width: 100%; height: 80px;"
-                                                class="product-imitation">
-                                            </div>
-                                            <div class="product-desc">
+
+                                                @forelse($edital->cargos as $cargo)
+                                                    <div class="col-md-3">
+                                                        <div class="ibox">
+                                                            <div style="height: 500px" class="ibox-content product-box">
+
+                                                                <div
+                                                                    style="background-image: url('{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}'); background-size: cover; background-position: center center; width: 100%; height: 80px;"
+                                                                    class="product-imitation">
+                                                                </div>
+                                                                <div class="product-desc">
                                 <span class="product-price">
                                     R$9.70
                                 </span>
-                                                <small class="text-muted">{{$edital->orgao->name}}</small>
-                                                <a href="#" class="product-name"> {{$cargo->name}}</a>
+                                                                    <small class="text-muted">{{$edital->orgao->name}}</small>
+                                                                    <a href="#" class="product-name"> {{$cargo->name}}</a>
 
 
-                                                <div class="small m-t-xs">
-                                                    {{--                                                Many desktop publishing packages and web page editors now.--}}
-                                                </div>
-                                                <div class="m-t text-righ">
+                                                                    <div class="small m-t-xs">
+                                                                        {{--                                                Many desktop publishing packages and web page editors now.--}}
+                                                                    </div>
+                                                                    <div class="m-t text-righ">
 
 
-                                                </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ibox-footer product-box">
+
+
+                                                                <a href="{{ url('comprar/'.$edital->id.'/cargo/'.$cargo->id) }}"
+                                                                   class="btn btn-block btn-outline btn-primary">
+                                                                    Comprar <i class="fa fa-long-arrow-right"></i>
+                                                                </a>
+                                                                <a href="{{ url('detalhes/'.$edital->id.'/cargo/'.$cargo->id) }}"
+                                                                   class="btn btn-block btn-outline btn-warning">
+                                                                    Detalhes <i class="fa fa-long-arrow-right"></i>
+                                                                </a>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @empty
+                                                @endforelse
+
+
                                             </div>
-                                        </div>
-                                        <div class="ibox-footer product-box">
-
-
-                                            <a href="{{ url('comprar/'.$edital->id.'/cargo/'.$cargo->id) }}"
-                                               class="btn btn-block btn-outline btn-primary">
-                                                Comprar <i class="fa fa-long-arrow-right"></i>
-                                            </a>
-                                            <a href="{{ url('detalhes/'.$edital->id.'/cargo/'.$cargo->id) }}"
-                                               class="btn btn-block btn-outline btn-warning">
-                                                Detalhes <i class="fa fa-long-arrow-right"></i>
-                                            </a>
 
                                         </div>
                                     </div>
-                                </div>
-                            @empty
-                            @endforelse
-
-
+                                @empty
+                                @endforelse
+                            </div>
                         </div>
+                        <div role="tabpanel" id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                                @forelse($passados as $passado)
 
+                                    <div class="ibox">
+                                        <div class="ibox-title">{{$passado->orgao->name}} - {{$passado->ano}}</div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+
+                                                @forelse($passado->cargos as $cargo)
+                                                    <div class="col-md-3">
+                                                        <div class="ibox">
+                                                            <div style="height: 500px" class="ibox-content product-box">
+
+                                                                <div
+                                                                    style="background-image: url('{{ $passado->img ? asset('concurso/' . $passado->img) : asset('logo.png') }}'); background-size: cover; background-position: center center; width: 100%; height: 80px;"
+                                                                    class="product-imitation">
+                                                                </div>
+                                                                <div class="product-desc">
+                                <span class="product-price">
+                                    R$9.70
+                                </span>
+                                                                    <small class="text-muted">{{$passado->orgao->name}}</small>
+                                                                    <a href="#" class="product-name"> {{$cargo->name}}</a>
+
+
+                                                                    <div class="small m-t-xs">
+                                                                        {{--                                                Many desktop publishing packages and web page editors now.--}}
+                                                                    </div>
+                                                                    <div class="m-t text-righ">
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ibox-footer product-box">
+
+
+                                                                <a href="{{ url('comprar/'.$passado->id.'/cargo/'.$cargo->id) }}"
+                                                                   class="btn btn-block btn-outline btn-primary">
+                                                                    Comprar <i class="fa fa-long-arrow-right"></i>
+                                                                </a>
+                                                                <a href="{{ url('detalhes/'.$passado->id.'/cargo/'.$cargo->id) }}"
+                                                                   class="btn btn-block btn-outline btn-warning">
+                                                                    Detalhes <i class="fa fa-long-arrow-right"></i>
+                                                                </a>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @empty
+                                                @endforelse
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                @empty
+                                @endforelse
+
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
-            @empty
-            @endforelse
+            </div>
+
 
         </div>
         <div class="row m-t-lg">
