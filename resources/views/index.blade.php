@@ -1,4 +1,8 @@
 @extends('padrao')
+@section('head')
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{url('/')}}">
+@endsection
 @section('content')
     <div class="container">
         <h1>Editais</h1>

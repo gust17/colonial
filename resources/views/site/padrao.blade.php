@@ -26,10 +26,11 @@
     <meta name="theme-color" content="#ffffff">
 
 
-    <meta name="description" content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
-    <meta name="keywords" content="Verticalize já, Edital verticalizado, Concurso Publico,Ferramenta de preparação, Edital verticalizado, Organização de estudos, Estratégia de estudo, Otimização do tempo, Aprovação em concursos, Plataforma de estudos, Direcionamento de estudo, Customização de material, Eficiência nos estudos, Desempenho nos concursos, Sucesso acadêmico, Foco nos estudos, Determinação acadêmica">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="{{url('/')}}">
+    <meta name="description"
+          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
+    <meta name="keywords"
+          content="Verticalize já, Edital verticalizado, Concurso Publico,Ferramenta de preparação, Edital verticalizado, Organização de estudos, Estratégia de estudo, Otimização do tempo, Aprovação em concursos, Plataforma de estudos, Direcionamento de estudo, Customização de material, Eficiência nos estudos, Desempenho nos concursos, Sucesso acadêmico, Foco nos estudos, Determinação acadêmica">
+    @yield('head')
     <title>VerticalizeJa</title>
 
     <!-- Bootstrap core CSS -->
