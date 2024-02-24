@@ -330,6 +330,24 @@ Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
     return view('detalhes', compact('cargoBusca','editalBusca', 'conteudos'));
 
 })->middleware(['auth', 'verified']);
+
+Route::get('edital/detalhes/{slug}', function ($slug) {
+
+    //dd($slug);
+    $edital = \App\Models\Edital::where('slug',$slug)->first();
+
+    if (!$edital){
+        return redirect()->route('acesso.negado');
+    }
+
+    $cargosOrdenados = $edital->cargos()->orderBy('name')->get();
+
+  ;
+
+
+    return view('site.edital-detalhes', compact('cargosOrdenados','edital'));
+
+});
 Route::get('open/detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
 
@@ -384,11 +402,11 @@ Route::get('open/detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //})->middleware(['auth','verified']);
 
 Route::get('duplica', function () {
-    $materias = \App\Models\Materia::whereIn('id', [4,55])->get();
-    $cargos = \App\Models\Cargo::whereIn('id', [37])->get();
+    $materias = \App\Models\Materia::whereIn('id', [4,5,55])->get();
+    $cargos = \App\Models\Cargo::whereIn('id', [57])->get();
     //dd($cargos);
     foreach ($materias as $materia) {
-        $conteudos = \App\Models\Conteudo::where('edital_id', 5)->where("cargo_id", 29)->where('materia_id', $materia->id)->get();
+        $conteudos = \App\Models\Conteudo::where('edital_id', 5)->where("cargo_id", 36)->where('materia_id', $materia->id)->get();
 
         foreach ($conteudos as $conteudo) {
             foreach ($cargos as $cargo) {
@@ -496,6 +514,15 @@ Route::get('privacidade', function () {
 });
 Route::get('reembolso', function () {
     return view('site.reembolso');
+});
+
+Route::get('gerar-slug',function (){
+    $editals = \App\Models\Edital::all();
+    foreach ($editals as $edital){
+        //dd($edital);
+        $slug = \Illuminate\Support\Str::slug($edital->orgao->name.'-'.$edital->ano);
+        $edital->update(['slug'=>$slug]);
+    }
 });
 
 

@@ -10,7 +10,8 @@ class Edital extends Model
     use HasFactory;
     protected $fillable = [
         'orgao_id',
-        'ano'
+        'ano',
+        'slug'
     ];
 
     public function orgao()
