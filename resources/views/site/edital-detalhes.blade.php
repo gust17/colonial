@@ -51,7 +51,7 @@
                             </a>
 
 
-                            <a href="{{ url('detalhes/'.$edital->id.'/cargo/'.$cargo->id) }}"
+                            <a href="{{ url('open/detalhes/'.$edital->id.'/cargo/'.$cargo->id) }}"
                                class="btn btn-block btn-outline btn-warning">
                                 Detalhes <i class="fa fa-long-arrow-right"></i>
                             </a>
