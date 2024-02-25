@@ -32,8 +32,7 @@
                 @csrf
                 <tr>
                     <td><input id="input_{{$index}}" class="form-control" name="conteudo[]" value="{{$parte}}"></td>
-                    <td><button id="add_button_{{$index}}" type="button" class="btn btn-primary" onclick="adicionarLinha({{$index}})">Adicionar Linha</button></td>
-                    <td><button id="merge_button_{{$index}}" type="button" class="btn btn-secondary" onclick="mesclarComLinhaAnterior({{$index}})">Mesclar com Linha Anterior</button></td>
+
                 </tr>
             @empty
             @endforelse
