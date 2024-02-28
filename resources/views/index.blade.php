@@ -1,5 +1,8 @@
 @extends('padrao')
 @section('head')
+
+    <meta name="description"
+          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{url('/')}}">
 @endsection
@@ -49,17 +52,22 @@
                                                class="btn btn-block btn-primary">
                                                 Baixar <i class="fa fa-download"></i>
                                             </a>
+                                            <a href="{{ url('acompanhar/'.$comprasAtivas->where('edital_id', $edital->id)->where('cargo_id', $cargo->id)->first()->id) }}"
+                                               class="btn btn-block btn-outline btn-warning">
+                                                Acompanhamento <i class="fa fa-long-arrow-right"></i>
+                                            </a>
                                         @else
                                             <a href="{{ url('comprar/'.$edital->id.'/cargo/'.$cargo->id) }}"
                                                class="btn btn-block btn-outline btn-primary">
                                                 Comprar <i class="fa fa-long-arrow-right"></i>
                                             </a>
-
-                                        @endif
                                             <a href="{{ url('detalhes/'.$edital->id.'/cargo/'.$cargo->id) }}"
                                                class="btn btn-block btn-outline btn-warning">
                                                 Detalhes <i class="fa fa-long-arrow-right"></i>
                                             </a>
+
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>

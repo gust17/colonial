@@ -1,4 +1,9 @@
 @extends('site.padrao')
+@section('head')
+
+    <meta name="description"
+          content="Edital verticalizado do concurso {{$edital->orgao->name}} - {{$edital->ano}}">
+@endsection
 @section('content')
     <div class="container">
         <div class="row m-b-lg">
