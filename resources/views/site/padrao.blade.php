@@ -25,11 +25,11 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-
+    @yield('head')
     <meta name="keywords"
           content="Verticalize já, Edital verticalizado, Concurso Publico,Ferramenta de preparação, Edital verticalizado, Organização de estudos, Estratégia de estudo, Otimização do tempo, Aprovação em concursos, Plataforma de estudos, Direcionamento de estudo, Customização de material, Eficiência nos estudos, Desempenho nos concursos, Sucesso acadêmico, Foco nos estudos, Determinação acadêmica">
 
-    @yield('head')
+
     <title>VerticalizeJa</title>
 
     <!-- Bootstrap core CSS -->
