@@ -143,7 +143,7 @@
                                                 <div style="height: 300px"
                                                      class="ibox-content product-box">
                                                     <center>
-                                                        <img style="height: 150px" class="img img-responsive"
+                                                        <img  class="img img-responsive img-concurso"
                                                              src="{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}"
                                                              alt="Edital verticalizado VERTICALIZEJA {{$edital->orgao->name}} -- {{$edital->ano}}">
                                                     </center>
