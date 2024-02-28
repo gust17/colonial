@@ -1,4 +1,11 @@
 @extends('site.padrao')
+@section('head')
+
+    <meta name="description"
+          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{url('/')}}">
+@endsection
 
 @section('content')
     <section id="features" class="container services">
