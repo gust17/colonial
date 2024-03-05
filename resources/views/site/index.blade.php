@@ -1,4 +1,5 @@
 @extends('site.padrao')
+@section('title','VERTICALIZEJA')
 @section('head')
 
     <meta name="description"

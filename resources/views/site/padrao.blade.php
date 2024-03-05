@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <title>@yield('title')</title>
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('icon/apple-icon-57x57.png')}}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{asset('icon/apple-icon-60x60.png')}}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('icon/apple-icon-60x60.png') }}">
@@ -30,7 +30,7 @@
           content="Verticalize já, Edital verticalizado, Concurso Publico,Ferramenta de preparação, Edital verticalizado, Organização de estudos, Estratégia de estudo, Otimização do tempo, Aprovação em concursos, Plataforma de estudos, Direcionamento de estudo, Customização de material, Eficiência nos estudos, Desempenho nos concursos, Sucesso acadêmico, Foco nos estudos, Determinação acadêmica">
 
 
-    <title>VerticalizeJa</title>
+
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">

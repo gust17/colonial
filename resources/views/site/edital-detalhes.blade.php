@@ -1,4 +1,5 @@
 @extends('site.padrao')
+@section('title','Edital Verticalizado '.$edital->orgao->name)
 @section('head')
 
     <meta name="description"
