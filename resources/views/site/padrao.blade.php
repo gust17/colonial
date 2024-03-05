@@ -22,7 +22,7 @@
 
     <link rel="manifest" href="{{asset('icon/manifest.json')}}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{{asset('icon/apple-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
 
     @yield('head')
