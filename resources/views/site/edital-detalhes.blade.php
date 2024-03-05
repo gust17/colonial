@@ -4,6 +4,8 @@
 
     <meta name="description"
           content="Edital verticalizado do concurso {{$edital->orgao->name}} - {{$edital->ano}}">
+    <meta property="og:title" content="VERTICALIZEJA">
+    <meta property="og:url" content="https://www.verticalizeja.com">
 @endsection
 @section('content')
     <div class="container">
