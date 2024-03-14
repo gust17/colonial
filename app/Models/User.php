@@ -25,7 +25,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'cpf',
         'whatsapp',
         'is_admin',
-        'asaas_client'
+        'asaas_client',
+        'direto',
+        'clique'
     ];
 
     /**
@@ -51,5 +53,22 @@ class User extends Authenticatable implements MustVerifyEmail
     public function compras()
     {
         return $this->hasMany(Compra::class);
+    }
+
+    public function filiados()
+    {
+        return $this->hasMany(User::class,'direto','id');
+    }
+
+    public function extratos()
+    {
+        return $this->hasMany(Extrato::class);
+    }
+
+    public function SaldoDisponivel()
+    {
+        $disponivel = $this->extratos()->where('tipo',0)->sum('valor')-$this->extratos()->where('tipo',1)->sum('valor');
+
+        return $disponivel;
     }
 }

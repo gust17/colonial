@@ -72,24 +72,38 @@ Route::get('/', function () {
     $passados = \App\Models\Edital::with(['cargos' => function ($query) {
         $query->orderBy('name');
     }])->where('ativo', 0)->get();
-    return view('site.index', compact('editals','passados'));
+    return view('site.index', compact('editals', 'passados'));
+});
+
+Route::get('/meu-link/{code}', function ($code) {
+    $usuario = \App\Models\User::where('code',$code)->first();
+    if (!$usuario){
+        return redirect(url('/'));
+    }
+    $editals = \App\Models\Edital::with(['cargos' => function ($query) {
+        $query->orderBy('name');
+    }])->where('ativo', 1)->get();
+    $passados = \App\Models\Edital::with(['cargos' => function ($query) {
+        $query->orderBy('name');
+    }])->where('ativo', 0)->get();
+    return view('site.parceiro', compact('editals', 'passados','usuario'));
 });
 
 use Smalot\PdfParser\Parser;
 
-Route::post('orgao/create',function (\Illuminate\Http\Request $request){
+Route::post('orgao/create', function (\Illuminate\Http\Request $request) {
     $orgao = \App\Models\Orgao::create($request->all());
     return redirect()->back();
 });
-Route::post('cargo/create',function (\Illuminate\Http\Request $request){
+Route::post('cargo/create', function (\Illuminate\Http\Request $request) {
     $cargo = \App\Models\Cargo::create($request->all());
     return redirect()->back();
 });
-Route::post('edital/create',function (\Illuminate\Http\Request $request){
+Route::post('edital/create', function (\Illuminate\Http\Request $request) {
     $edital = \App\Models\Edital::create($request->all());
     return redirect()->back();
 });
-Route::post('materia/create',function (\Illuminate\Http\Request $request){
+Route::post('materia/create', function (\Illuminate\Http\Request $request) {
     $materia = \App\Models\Materia::create($request->all());
     return redirect()->back();
 });
@@ -101,7 +115,7 @@ Route::get('teste', function () {
     $editals = \App\Models\Edital::all();
     $materias = \App\Models\Materia::all();
     $orgaos = \App\Models\Orgao::all();
-    return view('testeindex',compact('editals','cargos','materias','orgaos'));
+    return view('testeindex', compact('editals', 'cargos', 'materias', 'orgaos'));
     // Caminho completo para o arquivo PDF
     $pdfPath = public_path('edital.pdf');
 
@@ -144,8 +158,7 @@ Route::get('teste', function () {
         return 'Erro ao processar o arquivo PDF: ' . $e->getMessage();
     }
 });
-Route::post('gravaConteudo', function (\Illuminate\Http\Request $request,\App\Service\SepararService $separarService) {
-
+Route::post('gravaConteudo', function (\Illuminate\Http\Request $request, \App\Service\SepararService $separarService) {
 
 
     $texto = $request->conteudo;
@@ -161,12 +174,11 @@ Route::post('gravaConteudo', function (\Illuminate\Http\Request $request,\App\Se
     $edital_id = $request->edital_id;
     $cargo_id = $request->cargo_id;
     $material_id = $request->material_id;
-   // dd($edital_id,$cargo_id,$material_id);
+    // dd($edital_id,$cargo_id,$material_id);
     preg_match_all("/(?:\d+\.\d+|n\. \d+\/\d+|[^.()]+(?:\([^)]+\))?)\s*/s", $texto, $matches);
 
 
-
-    return view('conteudo', compact('matches','edital_id','cargo_id','material_id'));
+    return view('conteudo', compact('matches', 'edital_id', 'cargo_id', 'material_id'));
 });
 
 
@@ -261,10 +273,9 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
         );
 
         //dd($compra);
-    }else{
+    } else {
         //return redirect(url('minhascompras'));
     }
-
 
 
     $orgaoCobra = $compra->edital->orgao->name;
@@ -314,7 +325,6 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 
 
-
     $cargoBusca = \App\Models\Cargo::find($cargo);
     $editalBusca = \App\Models\Edital::find($edital);
     $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
@@ -325,31 +335,26 @@ Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
         ->get();
 
 
-
-
-    return view('detalhes', compact('cargoBusca','editalBusca', 'conteudos'));
+    return view('detalhes', compact('cargoBusca', 'editalBusca', 'conteudos'));
 
 })->middleware(['auth', 'verified']);
 
 Route::get('edital/detalhes/{slug}', function ($slug) {
 
     //dd($slug);
-    $edital = \App\Models\Edital::where('slug',$slug)->first();
+    $edital = \App\Models\Edital::where('slug', $slug)->first();
 
-    if (!$edital){
+    if (!$edital) {
         return redirect()->route('acesso.negado');
     }
 
-    $cargosOrdenados = $edital->cargos()->orderBy('name')->get();
-
-  ;
+    $cargosOrdenados = $edital->cargos()->orderBy('name')->get();;
 
 
-    return view('site.edital-detalhes', compact('cargosOrdenados','edital'));
+    return view('site.edital-detalhes', compact('cargosOrdenados', 'edital'));
 
 });
 Route::get('open/detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
-
 
 
     $cargoBusca = \App\Models\Cargo::find($cargo);
@@ -362,9 +367,7 @@ Route::get('open/detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
         ->get();
 
 
-
-
-    return view('site.detalhes', compact('cargoBusca','editalBusca', 'conteudos'));
+    return view('site.detalhes', compact('cargoBusca', 'editalBusca', 'conteudos'));
 
 });
 //Route::get('pdf/edital/{edital}/cargo/{cargo}', function ($edital, $cargo) {
@@ -402,7 +405,7 @@ Route::get('open/detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
 //})->middleware(['auth','verified']);
 
 Route::get('duplica', function () {
-    $materias = \App\Models\Materia::whereIn('id', [4,5,55])->get();
+    $materias = \App\Models\Materia::whereIn('id', [4, 5, 55])->get();
     $cargos = \App\Models\Cargo::whereIn('id', [57])->get();
     //dd($cargos);
     foreach ($materias as $materia) {
@@ -516,14 +519,22 @@ Route::get('reembolso', function () {
     return view('site.reembolso');
 });
 
-Route::get('gerar-slug',function (){
+Route::get('gerar-slug', function () {
     $editals = \App\Models\Edital::all();
-    foreach ($editals as $edital){
+    foreach ($editals as $edital) {
         //dd($edital);
-        $slug = \Illuminate\Support\Str::slug($edital->orgao->name.'-'.$edital->ano);
-        $edital->update(['slug'=>$slug]);
+        $slug = \Illuminate\Support\Str::slug($edital->orgao->name . '-' . $edital->ano);
+        $edital->update(['slug' => $slug]);
     }
 });
 
+Route::get('meus-filiados', function () {
+    return view('filiados.index');
+});
+
+Route::get('extrato', function () {
+    return view('filiados.extrato');
+});
+Route::post('realizar-saque',[\App\Http\Controllers\ExtratoController::class,'store']);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

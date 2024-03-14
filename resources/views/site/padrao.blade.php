@@ -57,7 +57,7 @@
     </style>
 </head>
 <body id="page-top" class="landing-page">
-@include('site.top')
+
 
 
 @yield('content')
@@ -65,6 +65,7 @@
 @include('site.footer')
 
 <!-- Mainly scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{asset('js/jquery-2.1.1.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
@@ -146,5 +147,7 @@
 
     gtag('config', 'G-QQGRZ34LGM');
 </script>
+
+@yield('js')
 </body>
 </html>

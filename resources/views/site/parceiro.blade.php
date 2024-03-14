@@ -6,10 +6,80 @@
           content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{url('/')}}">
+    <style>
+        label{
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('content')
-    @include('site.top')
+    <div class="navbar-wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{url('/')}}">{{env('APP_NAME')}}</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="page-scroll" href="{{url('/')}}">Inicio</a></li>
+                        <li><a class="page-scroll" href="{{url('privacidade')}}">Politíca de Privacidade</a></li>
+                        <li><a class="page-scroll" href="{{url('reembolso')}}">Politica de Reembolso</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#inSlider" data-slide-to="0" class="active"></li>
+            <li data-target="#inSlider" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>{{$usuario->name}} <br> PARCEIRO DA VERTICALIZEJA <br>A FERRAMENTA QUE VAI REVOLUCIONAR <br> A SUA FORMA DE ESTUDAR</h1>
+
+                        {{--                    <p>Lorem Ipsum is simply dummy text of the printing.</p>--}}
+                        <p>
+                            <a class="btn btn-lg btn-primary" href="{{route('register')}}" role="button">Cadastre-se</a>
+                            <a class="btn btn-lg btn-success" href="{{route('login')}}" role="button">Login</a>
+                        </p>
+                    </div>
+                    <div class="carousel-image wow zoomIn">
+                        <img src="img/landing/laptop.png" alt="laptop"/>
+                    </div>
+                </div>
+                <!-- Set background for slide in css -->
+                <div class="header-back one">
+
+                </div>
+
+            </div>
+            {{--        <div class="item">--}}
+            {{--            <div class="container">--}}
+            {{--                <div class="carousel-caption blank">--}}
+            {{--                    <h1>We create meaningful <br/> interfaces that inspire.</h1>--}}
+            {{--                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>--}}
+            {{--                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
+            {{--            <!-- Set background for slide in css -->--}}
+            {{--            <div class="header-back two"></div>--}}
+            {{--        </div>--}}
+        </div>
+
+    </div>
+
     <section id="features" class="container services">
         <div class="row">
             <div class="col-sm-3">
@@ -59,8 +129,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="features">
         <div class="container">
             <div class="row">
@@ -115,6 +183,117 @@
                         revisou. </p>
                 </div>
             </div>
+        </div>
+
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="navy-line"></div>
+                    <h1>Venha junto com {{$usuario->name}} utilizar o VerticalizeJa</h1>
+                    {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>--}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel black-bg">
+                    <div class="panel-body">
+                        <form class="m-t" method="POST" action="">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="">Nome</label>
+                                <input placeholder="Nome" id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                       name="name"
+                                       value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                            </div>
+                            <div class="form-group">
+
+                                <label for="">CPF</label>
+                                <input data-mask="999.999.999-99" placeholder="CPF" id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror"
+                                       name="cpf"
+                                       value="{{ old('cpf') }}"  required autocomplete="cpf">
+
+                                @error('cpf')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="">Email</label>
+                                <input placeholder="Email" id="email" type="email"
+                                       class="form-control @error('email') is-invalid @enderror"
+                                       name="email"
+                                       value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                            </div>
+                            <div class="form-group">
+
+                                <label for="">Whatsapp</label>
+                                <input data-mask="(99)99999-9999" placeholder="Whatsapp ou Telefone" id="whatsapp" type="text"
+                                       class="form-control @error('whatsapp') is-invalid @enderror"
+                                       name="whatsapp"
+                                       value="{{ old('whatsapp') }}" required autocomplete="whatsapp">
+
+                                @error('whatsapp')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Senha</label>
+                                <input placeholder="Senha" id="password" type="password"
+                                       class="form-control @error('password') is-invalid @enderror"
+                                       name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Confirme sua senha</label>
+                                <input placeholder="Confirme a senha senha" id="password-confirm" type="password" class="form-control"
+                                       name="password_confirmation"
+                                       required
+                                       autocomplete="new-password">
+
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Cadastrar
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </section>
@@ -286,4 +465,25 @@
         </div>
 
     </section>
+@endsection
+@section('js')
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script src="//code.jivosite.com/widget/7IlpzCWHxS" async></script>
+    <script>
+        $(document).ready(function() {
+            $('#phone').mask('(00)00000-0000'); // Aplica a máscara ao campo de telefone
+            $('#cpf').mask('000.000.000-00'); // Aplica a máscara ao campo de telefone
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQGRZ34LGM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-QQGRZ34LGM');
+    </script>
 @endsection

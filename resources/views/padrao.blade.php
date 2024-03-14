@@ -50,6 +50,9 @@
                         <li>
                             <a aria-expanded="false" role="button" href="{{url('meusdados')}}"> Meus Dados</a>
                         </li>
+                        <li>
+                            <a aria-expanded="false" role="button" href="{{url('meus-filiados')}}"> Meus Filiados</a>
+                        </li>
 
 
                     </ul>
