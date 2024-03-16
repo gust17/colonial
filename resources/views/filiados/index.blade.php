@@ -2,6 +2,38 @@
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-users fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Filiados</span>
+                            <h2 class="font-bold">{{auth()->user()->filiados->count()}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="widget style1 white-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-dollar fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Cliques</span>
+                            <h2 class="font-bold">{{auth()->user()->clique}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="container">
         <div class="ibox">
             <div class="ibox-title"><h3>Meu Link</h3></div>
             <div class="ibox-content">

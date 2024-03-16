@@ -13,12 +13,28 @@
 
     <link href="{{asset(url('css/animate.css'))}}" rel="stylesheet">
     <link href="{{asset(url('css/style.css'))}}" rel="stylesheet">
+    <style>
+        .form-control input {
+            color: black !important;
+        }
+        p{
+            color: black;
+        }
+        span {
+            color: black;
+        }
+    </style>
 
 </head>
 
-<body class="gray-bg">
+<body class="navy-bg">
 
-<div class="middle-box text-center loginscreen animated fadeInDown">
+<div class="middle-box  animated fadeInDown">
+    <div>
+        <center>
+            <img width="70%" class="img img-responsive" src="{{asset('logo.png')}}" alt="">
+        </center>
+    </div>
     @yield('conteudo')
 
 </div>

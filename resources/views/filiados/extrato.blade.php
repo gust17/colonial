@@ -60,7 +60,9 @@
                         <th>Descrição</th>
                         <th>Tipo</th>
                         <th>Valor</th>
-                        <th>Data</th>
+                        <th>Data Solicitação</th>
+                        <th>Status</th>
+                        <th>Data Pagamento</th>
 
 
                     </tr>
@@ -72,6 +74,8 @@
                             <td>{{$extrato->tipo_formatado}}</td>
                             <td>R$ {{number_format($extrato->valor,2,',','.')}}</td>
                             <td>{{$extrato->created_at->format('d/m/Y')}}</td>
+                            <td>{{$extrato->status_formatado}}</td>
+                            <td>{{$extrato->data_pagamento_formatado}}</td>
 
 
                         </tr>

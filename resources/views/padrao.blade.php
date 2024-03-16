@@ -16,13 +16,14 @@
 
     <link rel="apple-touch-icon" sizes="150x150" href="{{asset('icon/ms-icon-150x150.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="/{{asset('icon/ms-icon-150x150.png')}}">
-{{--    <link rel="manifest" href="/site.webmanifest">--}}
-{{--    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">--}}
+    {{--    <link rel="manifest" href="/site.webmanifest">--}}
+    {{--    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">--}}
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
 
-    <meta name="description" content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
+    <meta name="description"
+          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
 
 </head>
 
@@ -50,9 +51,18 @@
                         <li>
                             <a aria-expanded="false" role="button" href="{{url('meusdados')}}"> Meus Dados</a>
                         </li>
-                        <li>
-                            <a aria-expanded="false" role="button" href="{{url('meus-filiados')}}"> Meus Filiados</a>
-                        </li>
+
+                        @if(auth()->user()->code)
+                            <li>
+                                <a aria-expanded="false" role="button" href="{{url('meus-filiados')}}"> Meus
+                                    Filiados</a>
+                            </li>
+                            <li>
+                                <a aria-expanded="false" role="button" href="{{url('extrato')}}">
+                                    Extrato</a>
+                            </li>
+
+                        @endif
 
 
                     </ul>
@@ -122,7 +132,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQGRZ34LGM"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
 
     gtag('config', 'G-QQGRZ34LGM');

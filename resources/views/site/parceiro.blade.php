@@ -199,7 +199,7 @@
             <div class="row">
                 <div class="panel black-bg">
                     <div class="panel-body">
-                        <form class="m-t" method="POST" action="">
+                        <form class="m-t" method="POST" action="{{route('register')}}">
                             @csrf
 
                             <div class="form-group">
@@ -229,7 +229,7 @@
                                 @enderror
 
                             </div>
-
+                            <input type="hidden" value="{{$usuario->code}}" name="direto">
                             <div class="form-group">
 
                                 <label for="">Email</label>

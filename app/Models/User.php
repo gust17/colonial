@@ -59,6 +59,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(User::class,'direto','id');
     }
+    public function patrocinador()
+    {
+        return $this->belongsTo(User::class,'direto','id');
+    }
 
     public function extratos()
     {

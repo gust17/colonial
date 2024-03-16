@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Compra;
+use App\Models\Extrato;
 use App\Services\WhatsappService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class WebhookController extends Controller
 
     public function recebe(Request $request)
     {
-        //dd($request->all());
+        ///dd($request->all());
         try {
             // Obtenha os dados brutos da requisição
             $data = $request->getContent();
@@ -34,9 +35,31 @@ class WebhookController extends Controller
                             //($id);
 
                             $fatura = Compra::where("asaas_id", $id)->first();
-                            if (!$fatura){
+
+
+                            if (!$fatura || $fatura->status == 1) {
                                 return response()->json(['message' => 'sem retorno'], 200);
                             }
+
+
+                            if ($fatura->user->direto !== null && $fatura->user->direto != 0) {
+
+
+                                $grava = [
+                                    'tipo' => 0,
+                                    'user_id' => $fatura->user->patrocinador->id,
+                                    'valor' => 1,
+                                    'descricao' => 'Aquisição do edital verticalizado pelo(a) ' . $fatura->user->name,
+                                    'status' => 1,
+                                    'data_pagamento' => Carbon::now()
+                                ];
+
+                                //dd($grava);
+
+                                $extrato = Extrato::create($grava);
+                            }
+
+                            //dd('para');
                             $fatura->update(['status' => 1]);
                             $hoje = Carbon::now();
                             $fatura->update(['data_pagamento' => $hoje]);
@@ -45,7 +68,6 @@ class WebhookController extends Controller
 
                             $link = url('baixar', $fatura->id);
                             \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\ObrigadoEmail($user, $link));
-
 
 
                         } elseif ($decodedData['event'] == 'PAYMENT_CREATED') {

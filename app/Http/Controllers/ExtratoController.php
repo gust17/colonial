@@ -42,12 +42,12 @@ class ExtratoController extends Controller
         ]);
 
 
-
         $grava = [
-            'tipo'=>1,
-            'user_id'=>auth()->user()->id,
-            'valor'=>floatval($request->valor_solicitado),
-            'descricao' => 'Solicitação de Saque'
+            'tipo' => 1,
+            'user_id' => auth()->user()->id,
+            'valor' => floatval($request->valor_solicitado),
+            'descricao' => 'Solicitação de Saque',
+            'status' => 0
         ];
 
         $extrato = Extrato::create($grava);

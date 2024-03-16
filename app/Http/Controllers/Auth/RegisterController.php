@@ -8,6 +8,7 @@ use FontLib\Table\Type\post;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -66,15 +67,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        if (Session::get('code')) {
+            $code = Session::get('code');
+            //dd($code);
+            $busca = User::where('code', $code)->first();
+            if ($busca) {
+                $user_id = $busca->id;
+            }
+
+        }
+
+
         $cpf = preg_replace('/[^0-9]/', '', $data['cpf']);
         $telefone = preg_replace('/[^0-9]/', '', $data['whatsapp']);
+        $direto = $user_id ? $user_id : 0;
+
+        Session::forget('code');
+
+
 //        dd($cpf,$telefone);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'cpf' => $cpf,
-            'whatsapp' => $telefone
+            'whatsapp' => $telefone,
+            'direto' => $direto
         ]);
     }
 }

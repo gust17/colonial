@@ -75,20 +75,31 @@ Route::get('/', function () {
     return view('site.index', compact('editals', 'passados'));
 });
 
+
+####### Filiados ##############
+
 Route::get('/meu-link/{code}', function ($code) {
-    $usuario = \App\Models\User::where('code',$code)->first();
-    if (!$usuario){
+    $usuario = \App\Models\User::where('code', $code)->first();
+    if (!$usuario) {
         return redirect(url('/'));
     }
+    $usuario->update(['clique' => $usuario->clique + 1]);
+    Session::put('code', $usuario->code);
+
+    $code = Session::get('code');
+
+    //dd($code);
+
     $editals = \App\Models\Edital::with(['cargos' => function ($query) {
         $query->orderBy('name');
     }])->where('ativo', 1)->get();
     $passados = \App\Models\Edital::with(['cargos' => function ($query) {
         $query->orderBy('name');
     }])->where('ativo', 0)->get();
-    return view('site.parceiro', compact('editals', 'passados','usuario'));
+    return view('site.parceiro', compact('editals', 'passados', 'usuario'));
 });
 
+####################################
 use Smalot\PdfParser\Parser;
 
 Route::post('orgao/create', function (\Illuminate\Http\Request $request) {
@@ -504,10 +515,6 @@ Route::get('meusdados', function () {
 })->middleware(['auth', 'verified']);
 
 
-Route::get('testeM', function () {
-    return 'agora';
-})->middleware(['auth', 'admin']);
-
 Route::get('proibido', function () {
     return view('acesso.negado');
 })->name('acesso.negado');
@@ -534,7 +541,7 @@ Route::get('meus-filiados', function () {
 
 Route::get('extrato', function () {
     return view('filiados.extrato');
-});
-Route::post('realizar-saque',[\App\Http\Controllers\ExtratoController::class,'store']);
+})->middleware(['auth', 'verified']);;
+Route::post('realizar-saque', [\App\Http\Controllers\ExtratoController::class, 'store'])->middleware(['auth', 'verified']);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
