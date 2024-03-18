@@ -68,6 +68,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+
+        $user_id = 0;
         if (Session::get('code')) {
             $code = Session::get('code');
             //dd($code);
@@ -77,6 +79,7 @@ class RegisterController extends Controller
             }
 
         }
+
 
 
         $cpf = preg_replace('/[^0-9]/', '', $data['cpf']);
