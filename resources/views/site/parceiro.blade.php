@@ -30,8 +30,8 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="page-scroll" href="{{url('/')}}">Inicio</a></li>
-                        <li><a class="page-scroll" href="{{url('privacidade')}}">Politíca de Privacidade</a></li>
-                        <li><a class="page-scroll" href="{{url('reembolso')}}">Politica de Reembolso</a></li>
+{{--                        <li><a class="page-scroll" href="{{url('privacidade')}}">Politíca de Privacidade</a></li>--}}
+{{--                        <li><a class="page-scroll" href="{{url('reembolso')}}">Politica de Reembolso</a></li>--}}
 
                     </ul>
                 </div>
