@@ -1,9 +1,9 @@
 @extends('site.padrao')
-@section('title','VERTICALIZEJA')
+@section('title','ClubColonial')
 @section('head')
 
     <meta name="description"
-          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
+          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta ClubColonial e maximize suas chances de aprovação.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{url('/')}}">
     <style>
@@ -47,7 +47,7 @@
             <div class="item active">
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>{{$usuario->name}} <br> PARCEIRO DA VERTICALIZEJA <br>A FERRAMENTA QUE VAI REVOLUCIONAR <br> A SUA FORMA DE ESTUDAR</h1>
+                        <h1>{{$usuario->name}} <br> PARCEIRO DA ClubColonial <br>A FERRAMENTA QUE VAI REVOLUCIONAR <br> A SUA FORMA DE ESTUDAR</h1>
 
                         {{--                    <p>Lorem Ipsum is simply dummy text of the printing.</p>--}}
                         <p>
@@ -94,7 +94,7 @@
 
             </div>
             <div class="col-sm-3">
-                <h2>O QUE VERTICALIZEJA OFERECE AO USUÁRIO</h2>
+                <h2>O QUE ClubColonial OFERECE AO USUÁRIO</h2>
                 <p class="text-justify">Nós organizamos e facilitamos o estudo do conteúdo programático, por meio do
                     edital
                     verticalizado, onde o
@@ -120,7 +120,7 @@
 
             </div>
             <div class="col-sm-3">
-                <h2>BENEFÍCIOS DE TER O SEU VERTICALIZEJA</h2>
+                <h2>BENEFÍCIOS DE TER O SEU ClubColonial</h2>
                 <p class="text-justify">O candidato que planeja seus estudos, que tem uma visão clara dos assuntos que
                     precisa dominar, reduz a sua ansiedade, ganha confiança e tranquilidade, sabendo que está se
                     preparando
@@ -140,7 +140,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-1 features-text">
-                    <small>VERTICALIZEJA</small>
+                    <small>ClubColonial</small>
                     <h2>
                         Organização e planejamento </h2>
                     <i class="fa fa-bar-chart big-icon pull-right"></i>
@@ -150,7 +150,7 @@
                         estudos eficaz e bem equilibrado.</p>
                 </div>
                 <div class="col-lg-5 features-text">
-                    <small>VERTICALIZEJA</small>
+                    <small>ClubColonial</small>
                     <h2>Acompanhamento do progresso </h2>
                     <i class="fa fa-calendar big-icon pull-right"></i>
                     <p class="text-justify">Nossa ferramenta oferece uma estrutura que inclui campos como "estudado",
@@ -163,7 +163,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-1 features-text">
-                    <small>VERTICALIZEJA</small>
+                    <small>ClubColonial</small>
                     <h2> Foco nos temas relevantes </h2>
                     <i class="fa fa-check big-icon pull-right"></i>
 
@@ -173,7 +173,7 @@
                         importantes, permitindo que ele direcione seus estudos de forma estratégica.</p>
                 </div>
                 <div class="col-lg-5 features-text">
-                    <small>VERTICALIZEJA</small>
+                    <small>ClubColonial</small>
                     <h2>
                         Revisão Eficiente </h2>
                     <i class="fa fa-book big-icon pull-right"></i>
@@ -192,7 +192,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="navy-line"></div>
-                    <h1>Venha junto com {{$usuario->name}} utilizar o VerticalizeJa</h1>
+                    <h1>Venha junto com {{$usuario->name}} utilizar o ClubColonial</h1>
                     {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>--}}
                 </div>
             </div>
@@ -302,7 +302,7 @@
             <div class="row m-b-lg">
                 <div class="col-lg-12 text-center">
                     <div class="navy-line"></div>
-                    <h1>Nossos Editais</h1>
+                    <h1>Nossas Cestas</h1>
                     {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
                 </div>
             </div>
@@ -326,7 +326,7 @@
                                                     <center>
                                                         <img  class="img img-responsive img-concurso"
                                                              src="{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}"
-                                                             alt="Edital verticalizado VERTICALIZEJA {{$edital->orgao->name}} -- {{$edital->ano}}">
+                                                             alt="ClubColonial {{$edital->orgao->name}} -- {{$edital->ano}}">
                                                     </center>
                                                     <div class="product-desc">
                                                                     <span class="product-price">

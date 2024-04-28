@@ -8,14 +8,14 @@
                 <div class="row">
                     <div class="col-md-5">
 
-                        <img class="img img-responsive" src="{{asset('concurso/'.$compra->edital->img)}}" alt="">
+                        <img width="60%" class="img img-responsive" src="{{asset('storage/'.$compra->cesta->image)}}" alt="">
                     </div>
                     <div class="col-md-7">
 
                         <h2 class="font-bold m-b-xs">
-                            {{$compra->cargo->name}}
+                            {{$compra->name}}
                         </h2>
-                        <small> {{$compra->edital->orgao->name}}</small>
+                        <small> {{$compra->name}}</small>
                         <div class="m-t-md">
                             <h2 class="product-main-price">R$ {{ number_format($compra->valor, 2, ',', '.') }} <small
                                     class="text-muted"></small></h2>
@@ -26,11 +26,7 @@
 
                         <div class="small text-muted">
                             <h4>Você encontrará o conteúdo programatico das seguintes Matérias</h4>
-
-                            @forelse($conteudos as $conteudo)
-                                <p>{{$conteudo->name}}</p>
-                            @empty
-                            @endforelse
+                            <p style="color: black">{{$compra->cesta->description}}</p>
                             <br>
                             <br>
 

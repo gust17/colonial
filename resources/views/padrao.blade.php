@@ -23,7 +23,7 @@
 
 
     <meta name="description"
-          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
+          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta ClubColonial e maximize suas chances de aprovação.">
 
 </head>
 

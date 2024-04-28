@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>VerticalizeJa | Login</title>
+    <title>ClubColonial | Login</title>
 
     <link href="{{asset(url('css/bootstrap.min.css'))}}" rel="stylesheet">
     <link href="{{asset(url('font-awesome/css/font-awesome.css'))}}" rel="stylesheet">

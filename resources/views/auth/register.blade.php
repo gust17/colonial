@@ -103,6 +103,6 @@
                 </form>
             </div>
         </div>
-        <p class="text-center m-t"><small>VeticalizeJa &copy; 2024</small></p>
+        <p class="text-center m-t"><small>ClubColonial &copy; 2024</small></p>
     </div>
 @endsection

@@ -2,7 +2,7 @@
 @section('conteudo')
     <div>
 
-        <h3>Bem-vindo ao VerticalizeJa</h3>
+        <h3>Bem-vindo ao ClubColonial</h3>
         <p>Organizando sua preparação! Faça login e tenha acesso ao seu edital verticalizado para uma preparação
             eficiente.
             <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
@@ -75,6 +75,6 @@
         </div>
 
 
-        <p class="text-center m-t"><small>VeticalizeJa &copy; 2024</small></p>
+        <p class="text-center m-t"><small>ClubColonial &copy; 2024</small></p>
     </div>
 @endsection

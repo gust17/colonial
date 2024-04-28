@@ -31,7 +31,8 @@
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>VERTICALIZE JÁ <br> A FERRAMENTA QUE VAI REVOLUCIONAR <br> A SUA FORMA DE ESTUDAR</h1>
+                    <h1>CLUBCOLONIAL <br> </h1>
+{{--                    <h1>CLUBCOLONIAL <br> A FERRAMENTA QUE VAI REVOLUCIONAR <br> A SUA FORMA DE ESTUDAR</h1>--}}
 
                     {{--                    <p>Lorem Ipsum is simply dummy text of the printing.</p>--}}
                     <p>

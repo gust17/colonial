@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CestaController;
 use Illuminate\Support\Facades\Route;
 use CodePhix\Asaas\Asaas;
 
@@ -66,13 +67,8 @@ Route::get('/home', function () {
     return view('index', compact('editals', 'comprasAtivas'));
 })->middleware(['auth', 'verified']);
 Route::get('/', function () {
-    $editals = \App\Models\Edital::with(['cargos' => function ($query) {
-        $query->orderBy('name');
-    }])->where('ativo', 1)->get();
-    $passados = \App\Models\Edital::with(['cargos' => function ($query) {
-        $query->orderBy('name');
-    }])->where('ativo', 0)->get();
-    return view('site.index', compact('editals', 'passados'));
+    $cestas = \App\Models\Cesta::where('ativo', 1)->get();
+    return view('site.index', compact('cestas'));
 });
 
 
@@ -246,7 +242,7 @@ Route::post('finalizaEdital', function (\Illuminate\Http\Request $request) {
 //
 //});
 
-Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
+Route::get('comprar/{edital}', function ($edital) {
 
     $user = auth()->user();
     $asaas = new Asaas(env('ASAAS_TOKEN'), env('ASAAS_AMBIENTE'));
@@ -268,18 +264,17 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
     }
 
 
-    $buscaEdital = \App\Models\Edital::find($edital);
+    $buscaEdital = \App\Models\Cesta::find($edital);
 
 
-    $compra = \App\Models\Compra::where('cargo_id', $cargo)->where('edital_id', $edital)->where('user_id', auth()->user()->id)->first();
+    $compra = \App\Models\CompraColonial::where('cesta_id', $edital)->where('status', 0)->where('user_id', auth()->user()->id)->first();
 
     if (!$compra) {
-        $compra = \App\Models\Compra::create(
+        $compra = \App\Models\CompraColonial::create(
             [
-                'edital_id' => $edital,
-                'cargo_id' => $cargo,
+                'cesta_id' => $edital,
                 'user_id' => auth()->user()->id,
-                'valor' => $buscaEdital->valor
+                'valor' => $buscaEdital->price
             ]
         );
 
@@ -288,18 +283,18 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
         //return redirect(url('minhascompras'));
     }
 
-
-    $orgaoCobra = $compra->edital->orgao->name;
-
-    $cargoCobra = $compra->cargo->name;
-    $compra = \App\Models\Compra::find($compra->id);
+//
+//    $orgaoCobra = $compra->edital->orgao->name;
+//
+//    $cargoCobra = $compra->cargo->name;
+    $compra = \App\Models\CompraColonial::find($compra->id);
     if (!$compra->asaas_id) {
 
 
         $dadosCobranca = array(
             'customer' => $user->asaas_client,
-            'name' => 'Pagamento Referente a verticalização do Edital',
-            'description' => "Edital do $orgaoCobra $cargoCobra",
+            'name' => 'Pagamento Referente a assinatura da Cesta',
+            'description' => "Cesta do" . $compra->cesta->name,
             'dueDate' => \Carbon\Carbon::now()->addDays(2)->format('Y-m-d'),
             'value' => $compra->valor,
 
@@ -320,17 +315,17 @@ Route::get('comprar/{edital}/cargo/{cargo}', function ($edital, $cargo) {
         $compra->update(['asaas_id' => $cobranca->id]);
 
     }
+//
+//
+//    $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
+//        ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
+//        ->where('conteudos.edital_id', $edital)
+//        ->where('conteudos.cargo_id', $cargo)
+//        ->groupBy('conteudos.materia_id')
+//        ->get();
 
 
-    $conteudos = \App\Models\Conteudo::selectRaw('ANY_VALUE(materias.name) as name, materia_id')
-        ->join('materias', 'conteudos.materia_id', '=', 'materias.id')
-        ->where('conteudos.edital_id', $edital)
-        ->where('conteudos.cargo_id', $cargo)
-        ->groupBy('conteudos.materia_id')
-        ->get();
-
-
-    return view('checkout', compact('compra', 'conteudos'));
+    return view('checkout', compact('compra'));
 
 })->middleware(['auth', 'verified']);
 Route::get('detalhes/{edital}/cargo/{cargo}', function ($edital, $cargo) {
@@ -445,10 +440,11 @@ Route::get('duplica', function () {
 
 });
 Route::get('checkout/{id}/metodo/{metodo}', function ($id, $motodo, \App\Service\AsaasService $asaasService) {
-    $compra = \App\Models\Compra::find($id);
+    $compra = \App\Models\CompraColonial::find($id);
     $opcao = $asaasService->opcao($motodo);
 
     $asaas = new Asaas(env('ASAAS_TOKEN'), env('ASAAS_AMBIENTE'));
+//    dd($asaas);
     $cobranca = $asaas->Cobranca()->getById($compra->asaas_id);
     $dadosCobranca = array(
         'billingType' => $opcao //required
@@ -543,5 +539,11 @@ Route::get('extrato', function () {
     return view('filiados.extrato');
 })->middleware(['auth', 'verified']);;
 Route::post('realizar-saque', [\App\Http\Controllers\ExtratoController::class, 'store'])->middleware(['auth', 'verified']);
+
+
+Route::get('admin/cadcesta', [\App\Http\Controllers\CestaController::class, 'create']);
+Route::post('cad-cesta', [CestaController::class, 'store'])->middleware(['auth', 'verified'])->name('cadCesta');
+Route::get('cesta/{cesta}', [CestaController::class, 'show'])->name('cesta');
+
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

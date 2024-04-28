@@ -1,81 +1,67 @@
 @extends('site.padrao')
-@section('title','Edital Verticalizado '.$edital->orgao->name)
+@section('title','Edital Verticalizado '.$cesta->name)
 @section('head')
 
     <meta name="description"
-          content="Edital verticalizado do concurso {{$edital->orgao->name}} - {{$edital->ano}}">
-    <meta property="og:title" content="VERTICALIZEJA">
-    <meta property="og:url" content="https://www.verticalizeja.com">
+          content="Edital verticalizado do concurso {{$cesta->name}}">
+    <meta property="og:title" content="ClubColonial">
+
 @endsection
 @section('content')
-    <div class="container">
-        <div class="row m-b-lg">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>{{$edital->orgao->name}} - {{$edital->ano}}</h1>
-                {{--                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>--}}
-            </div>
-        </div>
+    @include('site.top')
 
-        <div class="row">
+    <div class="ibox product-detail">
+        <div class="ibox-content">
 
+            <div class="row">
+                <div class="col-md-5">
 
-            @forelse($cargosOrdenados as $cargo)
-                <div class="col-md-3">
-                    <div class="ibox">
-                        <div style="height: 300px" class="ibox-content product-box">
+                    <img width="60%" class="img img-responsive"
+                         src="{{ $cesta->image ? asset('storage/'.$cesta->image) : asset('logo.png') }}"
+                         alt="">
+                </div>
+                <div class="col-md-7">
 
-                            <center>
+                    <h2 class="font-bold m-b-xs">
+                        {{$cesta->name}}
+                    </h2>
+                    <small> {{$cesta->name}}</small>
+                    <div class="m-t-md">
+                        <h2 class="product-main-price">R$ {{ number_format($cesta->price, 2, ',', '.') }}
+                            <small class="text-muted"></small></h2>
+                    </div>
+                    <hr>
 
-                                <img style="height: 150px" class="img img-responsive"
-                                     src="{{ $edital->img ? asset('concurso/' . $edital->img) : asset('logo.png') }}"
-                                     alt="Edital verticalizado VERTICALIZEJA {{$edital->orgao->name}} -- {{$edital->ano}} -- {{$cargo->name}}">
-                            </center>
-                            <div class="product-desc">
-                                <span class="product-price">
-                                    R$ {{ number_format($edital->valor, 2, ',', '.') }}
-                                </span>
+                    <h4>Descrição do Produto</h4>
 
-                                <center>
-                                    <small class="text-muted">{{$edital->orgao->name}}</small>
-                                    <a href="#" class="product-name"> {{$cargo->name}}</a>
-                                </center>
+                    <div class="small text-muted">
+                        <h4>Você receberá</h4>
 
-                                <div class="small m-t-xs">
-                                    {{--                                                Many desktop publishing packages and web page editors now.--}}
-                                </div>
-                                <div class="m-t text-righ">
+                        <p style="color: black" ">{{$cesta->description}}</p>
+                        <br>
+                        <br>
 
+                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-footer product-box">
+                    <hr>
 
+                    <div>
 
-                            <a href="{{ url('comprar/'.$edital->id.'/cargo/'.$cargo->id) }}"
-                               class="btn btn-block btn-outline btn-primary">
-                                Comprar <i class="fa fa-long-arrow-right"></i>
-                            </a>
+                        <div class="btn-group">
+                            <a target="_blank" href="{{url('comprar/'.$cesta->id)}}"
+                               class="btn btn-primary btn-block"><i class="fa fa-cart-plus"></i> COMPRAR</a>
 
 
-                            <a href="{{ url('open/detalhes/'.$edital->id.'/cargo/'.$cargo->id) }}"
-                               class="btn btn-block btn-outline btn-warning">
-                                Detalhes <i class="fa fa-long-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
+
+
                 </div>
-            @empty
-            @endforelse
-
-
-            <div class="col-md-12 text-center">
-                <a href="{{url('/')}}" class="btn btn-primary">Voltar</a>
             </div>
 
         </div>
 
     </div>
+
 
 @endsection

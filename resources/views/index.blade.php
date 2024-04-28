@@ -2,13 +2,13 @@
 @section('head')
 
     <meta name="description"
-          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta VerticalizeJa e maximize suas chances de aprovação.">
+          content="Otimize seus estudos para concursos públicos com o poder do Edital Verticalizado! Acesse nossa ferramenta ClubColonial e maximize suas chances de aprovação.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{url('/')}}">
 @endsection
 @section('content')
     <div class="container">
-        <h1>Editais</h1>
+        <h1>Cestas</h1>
 
         @forelse($editals as $edital)
 

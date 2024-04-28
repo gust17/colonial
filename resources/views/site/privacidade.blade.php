@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>VerticalizeJa</title>
+    <title>ClubColonial</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -40,7 +40,7 @@
         <h2>Política de Privacidade</h2>
         <div class="col-sm-12">
             <h2>Quem somos?</h2>
-            <p class="text-justify">O endereço do nosso site é: https://verticalizeja.codegus.com/site</p>
+            <p class="text-justify">O endereço do nosso site é: https://ClubColonial.codegus.com/site</p>
 
         </div>
 
@@ -164,7 +164,7 @@
 
         <div class="col-sm-12">
             <h2>Quais são os seus direitos?</h2>
-            <p class="text-justify">   A VerticalizeJa assegura aos seus usuários, seus direitos de titular previstos no artigo 18 da Lei Geral de
+            <p class="text-justify">   A ClubColonial assegura aos seus usuários, seus direitos de titular previstos no artigo 18 da Lei Geral de
                 Proteção de Dados. Dessa forma, você pode, de maneira gratuita e a qualquer tempo:</p>
             <p class="text-justify"> a) confirmação da existência de tratamento;</p>
             <p class="text-justify"> b) acesso aos dados;</p>
