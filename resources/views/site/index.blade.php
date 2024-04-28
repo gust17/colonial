@@ -122,7 +122,7 @@
                                              class="ibox-content product-box">
                                             <center>
                                                 <img class="img img-responsive img-concurso"
-                                                     src="{{ $cesta->image ? asset('storage/'.$cesta->image) : asset('logo.png') }}"
+                                                     src="{{ $cesta->image ? asset($cesta->image) : asset('logo.png') }}"
                                                      alt="ClubColonial {{$cesta->name}}">
                                             </center>
                                             <div class="product-desc">

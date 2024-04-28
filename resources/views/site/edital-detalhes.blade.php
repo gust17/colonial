@@ -17,7 +17,7 @@
                 <div class="col-md-5">
 
                     <img width="60%" class="img img-responsive"
-                         src="{{ $cesta->image ? asset('storage/'.$cesta->image) : asset('logo.png') }}"
+                         src="{{ $cesta->image ? asset($cesta->image) : asset('logo.png') }}"
                          alt="">
                 </div>
                 <div class="col-md-7">
